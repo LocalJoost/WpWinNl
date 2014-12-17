@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<package> 
+  <metadata> 
+    <id>WpWinNlMaps</id>
+    <version>2.1.2-alpha</version> 
+    <authors>Joost van Schaik</authors>
+    <description>This is a map binding suite for Windows Phone 8.1 based on WinWinNl</description>
+    <summary>
+</summary>
+    <language>en-US</language>
+    <licenseUrl>http://wpwinnl.codeplex.com/license</licenseUrl>
+    <projectUrl>http://wpwinnl.codeplex.com</projectUrl>
+    <iconUrl>http://www.schaikweb.net/miscimages/WpWinNl.png</iconUrl>
+    <dependencies>
+      <dependency id="WpWinNl" version="2.1.2-alpha" />
+      <dependency id="Rx-Main" version="2.2.5" />  
+    </dependencies>
+  </metadata> 
+</package>

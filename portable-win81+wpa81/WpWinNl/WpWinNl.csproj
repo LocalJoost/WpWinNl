@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E0A7E3AD-68E8-44BD-9B84-F3D47704184A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WpWinNl</RootNamespace>
+    <AssemblyName>WpWinNl</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile32</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;PORTABLE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\output\wpwinnl_basic\lib\portable-win81+wpa81\</OutputPath>
+    <DefineConstants>TRACE;PORTABLE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
+    <TargetPlatform Include="Windows, Version=8.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\SolutionInfo\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="Behaviors\BaseAnimationBehavior.cs" />
+    <Compile Include="Behaviors\BaseScaleBehavior.cs" />
+    <Compile Include="Behaviors\Behavior.cs" />
+    <Compile Include="Behaviors\BehaviorOfT.cs" />
+    <Compile Include="Behaviors\ClipToBoundsBehavior.cs" />
+    <Compile Include="Behaviors\Direction.cs" />
+    <Compile Include="Behaviors\DragFlickBehavior.cs" />
+    <Compile Include="Behaviors\DynamicBackgroundBehavior.cs" />
+    <Compile Include="Behaviors\FlipViewPanoramaBehavior.cs" />
+    <Compile Include="Behaviors\HideWhenCollectionEmptyBehavior.cs" />
+    <Compile Include="Behaviors\LimitTextboxBehavior.cs" />
+    <Compile Include="Behaviors\MirrorBehavior.cs" />
+    <Compile Include="Behaviors\MoveObjectBehavior.cs" />
+    <Compile Include="Behaviors\SafeBehavior.cs" />
+    <Compile Include="Behaviors\SetInitialOpacityBehavior.cs" />
+    <Compile Include="Behaviors\SizeListenerBehavior.cs" />
+    <Compile Include="Behaviors\SizeVisualStateChangeBehavior.cs" />
+    <Compile Include="Behaviors\SizeVisualStateMapping.cs" />
+    <Compile Include="Behaviors\TextBoxChangeModelUpdateBehavior.cs" />
+    <Compile Include="Behaviors\UnfoldBehavior.cs" />
+    <Compile Include="Behaviors\WidthPercentageBehavior.cs" />
+    <Compile Include="Converters\BaseValueConverter.cs" />
+    <Compile Include="Converters\BasicGeopointConverter.cs" />
+    <Compile Include="Converters\BoolInvertConverter.cs" />
+    <Compile Include="Converters\NegativeValueConverter.cs" />
+    <Compile Include="Converters\NullToCollapsedConverter.cs" />
+    <Compile Include="Converters\ObjectToStringConverter.cs" />
+    <Compile Include="Converters\StripHtmlConverter.cs" />
+    <Compile Include="Converters\ToListConverter.cs" />
+    <Compile Include="Converters\ToLowerValueConverter.cs" />
+    <Compile Include="Converters\ToUpperValueConverter.cs" />
+    <Compile Include="Converters\VisibilityConverter.cs" />
+    <Compile Include="Geofencing\GeofenceExtensions.cs" />
+    <Compile Include="Geofencing\GeofenceMonitorExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\ApplicationExtensions.cs" />
+    <Compile Include="Utilities\BoolVisibilityExtensions.cs" />
+    <Compile Include="Utilities\DependencyObjectExtensions.cs" />
+    <Compile Include="Utilities\FrameworkElementExtensions.cs" />
+    <Compile Include="Maps\GeopointExtensions.cs" />
+    <Compile Include="Utilities\IEnumerableExtensions.cs" />
+    <Compile Include="Utilities\LineF.cs" />
+    <Compile Include="Utilities\LineFExtensions.cs" />
+    <Compile Include="Utilities\ManifestAppInfo.cs" />
+    <Compile Include="Utilities\ObservableCollectionExtensions.cs" />
+    <Compile Include="Utilities\PointExtensions.cs" />
+    <Compile Include="Utilities\ResettableObservableCollection.cs" />
+    <Compile Include="Utilities\StorageFolderExtensions.cs" />
+    <Compile Include="Utilities\StorageHelper.cs" />
+    <Compile Include="Utilities\StoryboardExtensions.cs" />
+    <Compile Include="Utilities\StringExtensions.cs" />
+    <Compile Include="Utilities\XElementExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="IBehaviorP">
+      <HintPath>..\..\packages\IBehaviorPortable.1.0.0\lib\portable-win81+wpa81\IBehaviorP.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WpWinNl.External\WpWinNl.External.csproj">
+      <Project>{f350a6f5-e09b-4b5f-9f10-45d014f45f63}</Project>
+      <Name>WpWinNl.External</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BaseModels\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

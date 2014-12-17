@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+
+  <metadata>
+
+    <id>WpWinNlBasic</id>
+    <version>2.1.2-alpha</version>
+    <authors>Joost van Schaik, Timmy Kokke, #wp7nl</authors>
+    <description>This project is a merger of wp7nl and win8nl, a collection of Windows Phone and Windows Store apps utility classes that are created or brought together by the Dutch developer community, a loose band of enthusiasts usually referred to as "#wp7nl" or #wpnl (these days) by their twitter hashtag.</description>
+    <summary>
+      This part is the basic part, not using MVVMLight
+    </summary>
+    <language>en-US</language>
+    <licenseUrl>http://wpwinnl.codeplex.com/license</licenseUrl>
+    <projectUrl>http://wpwinnl.codeplex.com</projectUrl>
+    <iconUrl>http://www.schaikweb.net/miscimages/WpWinNl.png</iconUrl>
+
+    <dependencies>
+
+      <group targetFramework="portable-win81+wpa81">
+        <dependency id="IBehaviorPortable" version="1.0.0" />
+      </group>
+      <group targetFramework="WindowsPhone8">
+        <dependency id="WPtoolkit" version="4.2013.08.16" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

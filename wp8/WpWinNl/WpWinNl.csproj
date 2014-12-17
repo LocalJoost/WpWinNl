@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{69C5F17E-99EF-421D-870F-1B7146F6894E}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WpWinNl</RootNamespace>
+    <AssemblyName>WpWinNl</AssemblyName>
+    <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\output\wpwinnl_basic\lib\WindowsPhone8\</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\x86\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\x86\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|ARM' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\ARM\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|ARM' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\ARM\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Behaviors\BaseAnimationBehavior.cs">
+      <Link>Behaviors\BaseAnimationBehavior.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Behaviors\BaseScaleBehavior.cs">
+      <Link>Behaviors\BaseScaleBehavior.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Behaviors\ClipToBoundsBehavior.cs">
+      <Link>Behaviors\ClipToBoundsBehavior.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Behaviors\Direction.cs">
+      <Link>Behaviors\Direction.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Behaviors\DragFlickBehavior.cs">
+      <Link>Behaviors\DragFlickBehavior.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Behaviors\DynamicBackgroundBehavior.cs">
+      <Link>Behaviors\DynamicBackgroundBehavior.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Behaviors\HideWhenCollectionEmptyBehavior.cs">
+      <Link>Behaviors\HideWhenCollectionEmptyBehavior.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Behaviors\LimitTextboxBehavior.cs">
+      <Link>Behaviors\LimitTextboxBehavior.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Behaviors\MirrorBehavior.cs">
+      <Link>Behaviors\MirrorBehavior.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Behaviors\MoveObjectBehavior.cs">
+      <Link>Behaviors\MoveObjectBehavior.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Behaviors\SetInitialOpacityBehavior.cs">
+      <Link>Behaviors\SetInitialOpacityBehavior.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Behaviors\SizeListenerBehavior.cs">
+      <Link>Behaviors\SizeListenerBehavior.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Behaviors\SizeVisualStateChangeBehavior.cs">
+      <Link>Behaviors\SizeVisualStateChangeBehavior.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Behaviors\SizeVisualStateMapping.cs">
+      <Link>Behaviors\SizeVisualStateMapping.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Behaviors\TextBoxChangeModelUpdateBehavior.cs">
+      <Link>Behaviors\TextBoxChangeModelUpdateBehavior.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Behaviors\UnfoldBehavior.cs">
+      <Link>Behaviors\UnfoldBehavior.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Behaviors\WidthPercentageBehavior.cs">
+      <Link>Behaviors\WidthPercentageBehavior.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Converters\BaseValueConverter.cs">
+      <Link>Converters\BaseValueConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Converters\BoolInvertConverter.cs">
+      <Link>Converters\BoolInvertConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Converters\NegativeValueConverter.cs">
+      <Link>Converters\NegativeValueConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Converters\NullToCollapsedConverter.cs">
+      <Link>Converters\NullToCollapsedConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Converters\ObjectToStringConverter.cs">
+      <Link>Converters\ObjectToStringConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Converters\StripHtmlConverter.cs">
+      <Link>Converters\StripHtmlConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Converters\ToListConverter.cs">
+      <Link>Converters\ToListConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Converters\ToLowerValueConverter.cs">
+      <Link>Converters\ToLowerValueConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Converters\ToUpperValueConverter.cs">
+      <Link>Converters\ToUpperValueConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Converters\VisibilityConverter.cs">
+      <Link>Converters\VisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Utilities\BoolVisibilityExtensions.cs">
+      <Link>Utilities\BoolVisibilityExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Utilities\FrameworkElementExtensions.cs">
+      <Link>Utilities\FrameworkElementExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Utilities\IEnumerableExtensions.cs">
+      <Link>Utilities\IEnumerableExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Utilities\LineF.cs">
+      <Link>Utilities\LineF.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Utilities\LineFExtensions.cs">
+      <Link>Utilities\LineFExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Utilities\ObservableCollectionExtensions.cs">
+      <Link>Utilities\ObservableCollectionExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Utilities\PointExtensions.cs">
+      <Link>Utilities\PointExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Utilities\ResettableObservableCollection.cs">
+      <Link>Utilities\ResettableObservableCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Utilities\StoryboardExtensions.cs">
+      <Link>Utilities\StoryboardExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Utilities\StringExtensions.cs">
+      <Link>Utilities\StringExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\portable-win81+wpa81\WpWinNl\Utilities\XElementExtensions.cs">
+      <Link>Utilities\XElementExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SolutionInfo\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="BaseModels\IBackKeyPressHandler.cs" />
+    <Compile Include="Behaviors\MessageBoxDisplayBehavior.cs" />
+    <Compile Include="Behaviors\NavigateToUrlAction.cs" />
+    <Compile Include="Behaviors\NavigatieToMarketplaceDetailAction.cs" />
+    <Compile Include="Behaviors\NavigatieToReviewAction.cs" />
+    <Compile Include="Behaviors\RemindData.cs" />
+    <Compile Include="Behaviors\RemindReviewBehavior.cs" />
+    <Compile Include="Behaviors\ResourceDictionaryExtensions.cs" />
+    <Compile Include="Behaviors\SafeBehavior.cs" />
+    <Compile Include="Behaviors\SendEmailAction.cs" />
+    <Compile Include="Behaviors\ShareLinkAction.cs" />
+    <Compile Include="Behaviors\StartStoryboardBehavior.cs" />
+    <Compile Include="Behaviors\UpgradeCheckBehavior.cs" />
+    <Compile Include="Behaviors\ViewportAreaBehavior.cs" />
+    <Compile Include="Behaviors\VisibilityInTrialBehavior.cs" />
+    <Compile Include="Behaviors\VisibleOnLocaleBehavior.cs" />
+    <Compile Include="Controls\ExtendedPhonePage.cs" />
+    <Compile Include="Controls\SwipeTitle.xaml.cs">
+      <DependentUpon>SwipeTitle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\ApplicationExtensions.cs" />
+    <Compile Include="Utilities\DataTemplateSelector.cs" />
+    <Compile Include="Utilities\GeoCoordinateExtensions.cs" />
+    <Compile Include="Utilities\IsolatedStorageHelper.cs" />
+    <Compile Include="Utilities\ManifestAppInfo.cs" />
+    <Compile Include="Utilities\TrialHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WpWinNl.External\WpWinNl.External.csproj">
+      <Project>{0408668E-D49D-4F81-8615-AECF8567F127}</Project>
+      <Name>WpWinNl.External</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Expression.Interactions, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Controls.Toolkit">
+      <HintPath>..\..\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\SwipeTitle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="README_FIRST.txt" />
+    <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
+  <ProjectExtensions />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
