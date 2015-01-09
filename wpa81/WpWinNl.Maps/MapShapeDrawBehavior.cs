@@ -14,7 +14,6 @@ using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Maps;
 using Windows.UI.Xaml.Input;
-using GalaSoft.MvvmLight;
 using WpWinNl.Behaviors;
 using WpWinNl.Utilities;
 
@@ -121,7 +120,7 @@ namespace WpWinNl.Maps
 
             foreach (var shape in shapes.Where(p => p.GetLayerName() == LayerName))
             {
-              FireViewmodelCommand(shape.ReadData<ViewModelBase>(), mapper.CommandName, selParams);
+              FireViewmodelCommand(shape.ReadData<object>(), mapper.CommandName, selParams);
             }
           }
         });
