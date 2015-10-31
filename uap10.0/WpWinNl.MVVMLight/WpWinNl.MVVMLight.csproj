@@ -7,7 +7,7 @@
     <ProjectGuid>{F6C14AD8-0B71-4728-B7C8-EEF11874D5DC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WpWinNl.MvvmLight</RootNamespace>
+    <RootNamespace>WpWinNl</RootNamespace>
     <AssemblyName>WpWinNl.MvvmLight</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
@@ -107,9 +107,39 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Audio\PlaySoundEffectBehavior.cs" />
+    <Compile Include="Audio\PlaySoundEffectMessage.cs" />
+    <Compile Include="BaseModels\AboutViewModelBase.cs" />
+    <Compile Include="BaseModels\AppViewModelBase.cs" />
+    <Compile Include="Behaviors\MessageDialogBehavior.cs" />
+    <Compile Include="Behaviors\MessageDialogMessage.cs" />
+    <Compile Include="Behaviors\NavigationHelperBehavior.cs" />
+    <Compile Include="Behaviors\ScreenshotBehavior.cs" />
+    <Compile Include="Behaviors\ScreenshotMessage.cs" />
+    <Compile Include="Behaviors\ScreenshotToStreamBehavior.cs" />
+    <Compile Include="Behaviors\ScreenshotToStreamMessage.cs" />
+    <Compile Include="Devices\ConnectMethod.cs" />
+    <Compile Include="Devices\DevicePairConnectionHelper.cs" />
+    <Compile Include="Devices\NavigationEventArgsExtensions.cs" />
+    <Compile Include="Devices\NavigationMessage.cs" />
+    <Compile Include="Devices\ReceivedMessageEventArgs.cs" />
+    <Compile Include="Globalization\Language.cs" />
+    <Compile Include="Globalization\LanguageSettingsViewModel.cs" />
+    <Compile Include="Globalization\LanguageSettingsViewModel.Win81.cs" />
+    <Compile Include="Messages\WindowVisibilityMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\SuspensionHelper.cs" />
     <Content Include="Properties\WpWinNl.MvvmLight.rd.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WpWinNl.External\WpWinNl.External.csproj">
+      <Project>{55735aae-9cf6-41bb-9dc5-677b49fdc54d}</Project>
+      <Name>WpWinNl.External</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WpWinNl\WpWinNl.csproj">
+      <Project>{43f2875d-5b09-4590-8339-312fc4099217}</Project>
+      <Name>WpWinNl</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
