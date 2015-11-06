@@ -3,41 +3,23 @@
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{43F2875D-5B09-4590-8339-312FC4099217}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{ADB894A1-B74C-48A3-8F3A-859B0980ED22}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WpWinNl</RootNamespace>
-    <AssemblyName>WpWinNl</AssemblyName>
+    <RootNamespace>WpWinNl.MapBindingDemo</RootNamespace>
+    <AssemblyName>WpWinNl.MapBindingDemo</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <PackageCertificateKeyFile>WpWinNl.MapBindingDemo_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
-    <PlatformTarget>ARM</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\ARM\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
@@ -46,9 +28,9 @@
     <PlatformTarget>ARM</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
-    <PlatformTarget>ARM</PlatformTarget>
     <OutputPath>bin\ARM\Release\</OutputPath>
     <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <Optimize>true</Optimize>
@@ -57,9 +39,10 @@
     <PlatformTarget>ARM</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x64\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
@@ -68,9 +51,9 @@
     <PlatformTarget>x64</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <PlatformTarget>x64</PlatformTarget>
     <OutputPath>bin\x64\Release\</OutputPath>
     <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <Optimize>true</Optimize>
@@ -79,9 +62,10 @@
     <PlatformTarget>x64</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x86\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
@@ -90,9 +74,9 @@
     <PlatformTarget>x86</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <PlatformTarget>x86</PlatformTarget>
     <OutputPath>bin\x86\Release\</OutputPath>
     <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <Optimize>true</Optimize>
@@ -101,56 +85,66 @@
     <PlatformTarget>x86</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Behaviors\BaseAnimationBehavior.cs" />
-    <Compile Include="Behaviors\BaseScaleBehavior.cs" />
-    <Compile Include="Behaviors\ClipToBoundsBehavior.cs" />
-    <Compile Include="Behaviors\Direction.cs" />
-    <Compile Include="Behaviors\DragFlickBehavior.cs" />
-    <Compile Include="Behaviors\DynamicBackgroundBehavior.cs" />
-    <Compile Include="Behaviors\FlipViewPanoramaBehavior.cs" />
-    <Compile Include="Behaviors\HideWhenCollectionEmptyBehavior.cs" />
-    <Compile Include="Behaviors\LimitTextboxBehavior.cs" />
-    <Compile Include="Behaviors\MirrorBehavior.cs" />
-    <Compile Include="Behaviors\MoveObjectBehavior.cs" />
-    <Compile Include="Behaviors\SetInitialOpacityBehavior.cs" />
-    <Compile Include="Behaviors\SizeListenerBehavior.cs" />
-    <Compile Include="Behaviors\SizeVisualStateChangeBehavior.cs" />
-    <Compile Include="Behaviors\SizeVisualStateMapping.cs" />
-    <Compile Include="Behaviors\TextBoxChangeModelUpdateBehavior.cs" />
-    <Compile Include="Behaviors\UnfoldBehavior.cs" />
-    <Compile Include="Behaviors\WidthPercentageBehavior.cs" />
-    <Compile Include="Converters\BaseValueConverter.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities\ApplicationExtensions.cs" />
-    <Compile Include="Utilities\BoolVisibilityExtensions.cs" />
-    <Compile Include="Utilities\DependencyObjectExtensions.cs" />
-    <Compile Include="Utilities\FrameworkElementExtensions.cs" />
-    <Compile Include="Utilities\IEnumerableExtensions.cs" />
-    <Compile Include="Utilities\LineF.cs" />
-    <Compile Include="Utilities\LineFExtensions.cs" />
-    <Compile Include="Utilities\ManifestAppInfo.cs" />
-    <Compile Include="Utilities\ObservableCollectionExtensions.cs" />
-    <Compile Include="Utilities\PointExtensions.cs" />
-    <Compile Include="Utilities\RectangleF.cs" />
-    <Compile Include="Utilities\ResettableObservableCollection.cs" />
-    <Compile Include="Utilities\StorageFolderExtensions.cs" />
-    <Compile Include="Utilities\StorageHelper.cs" />
-    <Compile Include="Utilities\StoryboardExtensions.cs" />
-    <Compile Include="Utilities\StringExtensions.cs" />
-    <Compile Include="Utilities\XElementExtensions.cs" />
-    <Content Include="Properties\WpWinNl.rd.xml" />
+    <Compile Include="ViewModels\MapBindingViewModel.cs" />
+    <Compile Include="ViewModels\PointList.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WpWinNl.External\WpWinNl.External.csproj">
-      <Project>{55735aae-9cf6-41bb-9dc5-677b49fdc54d}</Project>
-      <Name>WpWinNl.External</Name>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <None Include="WpWinNl.MapBindingDemo_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\winlogo.png" />
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WpWinNl.Maps\WpWinNl.Maps.csproj">
+      <Project>{5633ac1e-6f3e-45d2-936b-f2ffe33e792c}</Project>
+      <Name>WpWinNl.Maps</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WpWinNl.MvvmLight\WpWinNl.MvvmLight.csproj">
+      <Project>{f6c14ad8-0b71-4728-b7c8-eef11874d5dc}</Project>
+      <Name>WpWinNl.MvvmLight</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WpWinNl\WpWinNl.csproj">
+      <Project>{43f2875d-5b09-4590-8339-312fc4099217}</Project>
+      <Name>WpWinNl</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

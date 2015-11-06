@@ -21,10 +21,12 @@ namespace WpWinNl.Maps
 
     public string ImageUri { get; set; }
 
+    public MapElementCollisionBehavior CollisionBehaviorDesired { get; set; }
+
     public override MapElement CreateShape(object viewModel, Geopath path)
     {
       var icon = new MapIcon { Location = new Geopoint(path.Positions[0]), 
-        NormalizedAnchorPoint = new Point(AnchorX,AnchorY),  ZIndex = ZIndex};
+        NormalizedAnchorPoint = new Point(AnchorX,AnchorY),  ZIndex = ZIndex, CollisionBehaviorDesired = CollisionBehaviorDesired};
       if (!string.IsNullOrWhiteSpace(Title))
       {
         icon.Title = Title;
@@ -32,6 +34,7 @@ namespace WpWinNl.Maps
 
       if (!string.IsNullOrWhiteSpace(ImageUri))
       {
+
         icon.Image = RandomAccessStreamReference.CreateFromUri(new Uri(ImageUri));
       }
 

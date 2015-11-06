@@ -15,8 +15,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Maps;
 using Windows.UI.Xaml.Input;
 using Microsoft.Xaml.Interactivity;
-using WpWinNl.Behaviors;
-using WpWinNl.Utilities;
 
 
 namespace WpWinNl.Maps
@@ -134,14 +132,8 @@ namespace WpWinNl.Maps
       {
         var dcType = viewModel.GetType();
         var commandGetter = dcType.GetRuntimeMethod("get_" + commandName, new Type[0]);
-        if (commandGetter != null)
-        {
-          var command = commandGetter.Invoke(viewModel, null) as ICommand;
-          if (command != null)
-          {
-            command.Execute(selParams);
-          }
-        }
+          var command = commandGetter?.Invoke(viewModel, null) as ICommand;
+          command?.Execute(selParams);
       }
     }
 
@@ -209,10 +201,7 @@ namespace WpWinNl.Maps
         var dcType = viewModel.GetType();
 
         var methodInfo = dcType.GetRuntimeMethod("get_" + PathPropertyName, new Type[0]);
-        if (methodInfo != null)
-        {
-          return methodInfo.Invoke(viewModel, null) as Geopath;
-        }
+          return methodInfo?.Invoke(viewModel, null) as Geopath;
       }
       return null;
     }
@@ -327,7 +316,7 @@ namespace WpWinNl.Maps
 
                              case NotifyCollectionChangedAction.Reset:
                                {
-                                 var toDelete = thisobj.AssociatedObject.MapElements.Where(p => MapBindingHelpers.GetLayerName(p) == thisobj.LayerName).ToList();
+                                 var toDelete = thisobj.AssociatedObject.MapElements.Where(p => p.GetLayerName() == thisobj.LayerName).ToList();
                                  toDelete.ForEach(p => thisobj.AssociatedObject.MapElements.Remove(p));
 
                                  thisobj.AddNewShapes(thisobj.ItemsSource);

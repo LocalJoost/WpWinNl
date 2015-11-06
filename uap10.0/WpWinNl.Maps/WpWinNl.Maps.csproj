@@ -120,6 +120,7 @@
     <Compile Include="MapShapeDrawBehavior.cs" />
     <Compile Include="MapShapeDrawer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MapObjectsListConverter.cs" />
     <Content Include="Properties\WpWinNl.Maps.rd.xml" />
   </ItemGroup>
   <ItemGroup>
