@@ -7,6 +7,7 @@
     xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
     xmlns:mapbinding="using:WpWinNl.Maps"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:behaviors="using:WpWinNl.Behaviors"
     x:Class="WpWinNl.MapBindingDemo.MainPage"
     mc:Ignorable="d">
 
@@ -22,6 +23,9 @@
         </CommandBar>
     </Page.BottomAppBar>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <interactivity:Interaction.Behaviors>
+            <behaviors:MessageDialogBehavior/>
+        </interactivity:Interaction.Behaviors>
         <maps:MapControl x:Name="MyMap" Grid.Row="0"
                          mapbinding:MapBindingHelpers.MapViewArea="{x:Bind ViewModel.Area, Mode=OneWay}">
             <interactivity:Interaction.Behaviors>
