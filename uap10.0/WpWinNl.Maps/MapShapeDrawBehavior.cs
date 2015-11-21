@@ -82,43 +82,62 @@ namespace WpWinNl.Maps
       }
     }
 
+    private Point? GetTapPoint(object args)
+    {
+      Point? tapPoint = null;
+      var mapInputEventArgs = args as MapInputEventArgs;
+      if (mapInputEventArgs != null)
+      {
+        tapPoint = mapInputEventArgs.Position;
+      }
+      if (tapPoint == null)
+      {
+        var tappedRoutedEventArgs = args as TappedRoutedEventArgs;
+        if (tappedRoutedEventArgs != null)
+        {
+          tapPoint = tappedRoutedEventArgs.GetPosition(this.AssociatedObject);
+        }
+      }
+      return tapPoint;
+    }
+
     private void AddEventMapping(EventToCommandMapper mapper)
     {
       Observable.FromEventPattern<object>(AssociatedObject, mapper.EventName)
         .Subscribe(se =>
         {
-          Point? tapPoint = null;
-          var mapInputEventArgs = se.EventArgs as MapInputEventArgs;
-          if (mapInputEventArgs != null)
-          {
-            tapPoint = mapInputEventArgs.Position;
-          }
-          if (tapPoint == null)
-          {
-            var tappedRoutedEventArgs = se.EventArgs as TappedRoutedEventArgs;
-            if (tappedRoutedEventArgs != null)
-            {
-              tapPoint = tappedRoutedEventArgs.GetPosition(this.AssociatedObject);
-            }
-          }
-
+          var tapPoint = GetTapPoint(se.EventArgs);
+          IList<MapElement> shapes = null;
           if (tapPoint != null)
           {
             Debug.WriteLine("Tapped on {0},{1} on LayerName {2}", tapPoint.Value.X, tapPoint.Value.Y, LayerName);
+            shapes = new List<MapElement>(AssociatedObject.FindMapElementsAtOffset(tapPoint.Value));
+          }
+          else
+          {
+            var mapClickArgs = se.EventArgs as MapElementClickEventArgs;
+            if (mapClickArgs != null)
+            {
+              shapes = mapClickArgs.MapElements;
+            }
+          }
 
-            var shapes = AssociatedObject.FindMapElementsAtOffset(tapPoint.Value);
+          if (shapes != null)
+          {
+            var shapesOnLayer = shapes.Where(p => p.GetLayerName() == LayerName).ToList();
             var selParams = new MapSelectionParameters
             {
               LayerName = LayerName,
               SelectTime = DateTimeOffset.Now
             };
-            var t = shapes.Count(p => p.GetLayerName() == LayerName);
+
+            var t = shapesOnLayer.Count();
             if (t != 0)
             {
               Debug.WriteLine("Found {0} shapes on layer {1}", t, LayerName);
             }
 
-            foreach (var shape in shapes.Where(p => p.GetLayerName() == LayerName))
+            foreach (var shape in shapesOnLayer)
             {
               FireViewmodelCommand(shape.ReadData<object>(), mapper.CommandName, selParams);
             }
@@ -132,8 +151,8 @@ namespace WpWinNl.Maps
       {
         var dcType = viewModel.GetType();
         var commandGetter = dcType.GetRuntimeMethod("get_" + commandName, new Type[0]);
-          var command = commandGetter?.Invoke(viewModel, null) as ICommand;
-          command?.Execute(selParams);
+        var command = commandGetter?.Invoke(viewModel, null) as ICommand;
+        command?.Execute(selParams);
       }
     }
 
@@ -201,7 +220,7 @@ namespace WpWinNl.Maps
         var dcType = viewModel.GetType();
 
         var methodInfo = dcType.GetRuntimeMethod("get_" + PathPropertyName, new Type[0]);
-          return methodInfo?.Invoke(viewModel, null) as Geopath;
+        return methodInfo?.Invoke(viewModel, null) as Geopath;
       }
       return null;
     }

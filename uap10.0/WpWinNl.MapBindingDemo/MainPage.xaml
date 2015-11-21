@@ -31,7 +31,7 @@
             <interactivity:Interaction.Behaviors>
                 <mapbinding:MapShapeDrawBehavior LayerName="Points" ItemsSource="{x:Bind ViewModel.Icons, Converter={StaticResource MapObjectsListConverter}}" PathPropertyName="Points">
                     <mapbinding:MapShapeDrawBehavior.EventToCommandMappers>
-                        <mapbinding:EventToCommandMapper EventName="MapTapped" CommandName="SelectCommand" />
+                        <mapbinding:EventToCommandMapper EventName="MapElementClick" CommandName="SelectCommand" />
                     </mapbinding:MapShapeDrawBehavior.EventToCommandMappers>
                     <mapbinding:MapShapeDrawBehavior.ShapeDrawer>
                         <mapbinding:MapIconDrawer  ImageUri="ms-appx:///Assets/winlogo.png" CollisionBehaviorDesired="RemainVisible"/>
@@ -40,7 +40,7 @@
 
                 <mapbinding:MapShapeDrawBehavior LayerName="Lines" ItemsSource="{x:Bind ViewModel.Lines, Converter={StaticResource MapObjectsListConverter}}" PathPropertyName="Points">
                     <mapbinding:MapShapeDrawBehavior.EventToCommandMappers>
-                        <mapbinding:EventToCommandMapper EventName="MapTapped" CommandName="SelectCommand"/>
+                        <mapbinding:EventToCommandMapper EventName="MapElementClick" CommandName="SelectCommand"/>
                     </mapbinding:MapShapeDrawBehavior.EventToCommandMappers>
                     <mapbinding:MapShapeDrawBehavior.ShapeDrawer>
                         <mapbinding:MapPolylineDrawer Color="BlueViolet"/>
