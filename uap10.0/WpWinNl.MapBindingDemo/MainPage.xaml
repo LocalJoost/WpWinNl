@@ -29,7 +29,7 @@
         <maps:MapControl x:Name="MyMap" Grid.Row="0"
                          mapbinding:MapBindingHelpers.MapViewArea="{x:Bind ViewModel.Area, Mode=OneWay}">
             <interactivity:Interaction.Behaviors>
-                <mapbinding:MapShapeDrawBehavior LayerName="Points" ItemsSource="{x:Bind ViewModel.Icons, Converter={StaticResource MapObjectsListConverter}}" PathPropertyName="Points">
+                <mapbinding:MapShapeDrawBehavior LayerName="Points" ItemsSource="{x:Bind ViewModel.Icons, Converter={StaticResource MapObjectsListConverter}}" PathPropertyName="Point">
                     <mapbinding:MapShapeDrawBehavior.EventToCommandMappers>
                         <mapbinding:EventToCommandMapper EventName="MapElementClick" CommandName="SelectCommand" />
                     </mapbinding:MapShapeDrawBehavior.EventToCommandMappers>

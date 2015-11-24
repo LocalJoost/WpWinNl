@@ -38,36 +38,55 @@ namespace WpWinNl.Maps
     /// <returns></returns>
     private MapElement CreateShape(object viewModel)
     {
-      var path = GetPathValue(viewModel);
-      if (path != null && path.Positions.Any())
+      var locationData = GetPathValue(viewModel);
+      if (locationData != null)
       {
-        var newShape = CreateDrawable(viewModel, path);
-        newShape.AddData(viewModel);
-        newShape.SetLayer(LayerName);
-
-        // Listen to property changed event of geometry property to check if the shape needs to
-        // be redrawed
-        var evt = viewModel.GetType().GetRuntimeEvent("PropertyChanged");
-        if (evt != null)
+        var newShape = CreateDrawable(viewModel, locationData);
+        if (newShape != null)
         {
-          Observable.FromEventPattern<PropertyChangedEventArgs>(viewModel, "PropertyChanged")
-            .Subscribe(se =>
-                         {
-                           if (se.EventArgs.PropertyName == PathPropertyName)
-                           {
-                             ReplaceShape(se.Sender);
-                           }
-                         });
+          newShape.AddData(viewModel);
+          newShape.SetLayer(LayerName);
+
+          // Listen to property changed event of geometry property to check if the shape needs to
+          // be redrawed
+          var evt = viewModel.GetType().GetRuntimeEvent("PropertyChanged");
+          if (evt != null)
+          {
+            Observable.FromEventPattern<PropertyChangedEventArgs>(viewModel, "PropertyChanged")
+              .Subscribe(se =>
+              {
+                if (se.EventArgs.PropertyName == PathPropertyName)
+                {
+                  ReplaceShape(se.Sender);
+                }
+              });
+          }
+          return newShape;
         }
-        return newShape;
       }
       return null;
     }
 
-    protected virtual MapElement CreateDrawable(object viewModel, Geopath path)
+    protected virtual MapElement CreateDrawable(object viewModel, object locationData)
     {
-      var newShape = ShapeDrawer.CreateShape(viewModel, path);
-      return newShape;
+      if (locationData is BasicGeoposition)
+      {
+        return ShapeDrawer.CreateShape(viewModel, (BasicGeoposition)locationData);
+      }
+
+      var p = locationData as Geopath;
+      if (p != null)
+      {
+        return ShapeDrawer.CreateShape(viewModel, p);
+      }
+
+      var l = locationData as IList<Geopath>;
+      if (l != null)
+      {
+        return ShapeDrawer.CreateShape(viewModel, l);
+      }
+
+      return null;
     }
 
     private void AddEventMappings()
@@ -213,14 +232,13 @@ namespace WpWinNl.Maps
       }
     }
 
-    private Geopath GetPathValue(object viewModel)
-    {
+    private object GetPathValue(object viewModel){
       if (viewModel != null)
       {
         var dcType = viewModel.GetType();
 
         var methodInfo = dcType.GetRuntimeMethod("get_" + PathPropertyName, new Type[0]);
-        return methodInfo?.Invoke(viewModel, null) as Geopath;
+        return methodInfo?.Invoke(viewModel, null);
       }
       return null;
     }

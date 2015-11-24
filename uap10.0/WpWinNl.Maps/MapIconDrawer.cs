@@ -23,9 +23,9 @@ namespace WpWinNl.Maps
 
     public MapElementCollisionBehavior CollisionBehaviorDesired { get; set; }
 
-    public override MapElement CreateShape(object viewModel, Geopath path)
+    public override MapElement CreateShape(object viewModel, BasicGeoposition pos)
     {
-      var icon = new MapIcon { Location = new Geopoint(path.Positions[0]), 
+      var icon = new MapIcon { Location = new Geopoint(pos), 
         NormalizedAnchorPoint = new Point(AnchorX,AnchorY),  ZIndex = ZIndex, CollisionBehaviorDesired = CollisionBehaviorDesired};
       if (!string.IsNullOrWhiteSpace(Title))
       {

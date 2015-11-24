@@ -1,34 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Input;
 using Windows.Devices.Geolocation;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
-using GalaSoft.MvvmLight.Threading;
-using WpWinNl.Behaviors;
-using WpWinNl.Maps;
 
 namespace WpWinNl.MapBindingDemo.ViewModels
 {
-  public class PointList : ViewModelBase
+  public class LinearList : GeometryProvider
   {
-    public PointList()
+    public LinearList()
     {
       Points = null;
     }
-    public string Name { get; set; }
 
     public Geopath Points { get; set; }
 
     /// <summary>
     /// Get two lines with names
     /// </summary>
-    public static IEnumerable<PointList> GetLines()
+    public static IEnumerable<LinearList> GetLines()
     {
-      var result = new List<PointList>
+      var result = new List<LinearList>
       {
-        new PointList
+        new LinearList
         {
           Name = "Line1",
           Points = new Geopath(new[]{
@@ -38,11 +30,11 @@ namespace WpWinNl.MapBindingDemo.ViewModels
             new BasicGeoposition{Latitude = 52.1837400365621, Longitude = 5.40009761229157}
           })
         },
-        new PointList
+        new LinearList
         {
           Name = "Line2",
          Points= new Geopath(new[]{
-            new BasicGeoposition{Latitude = 52.181295119226 , Longitude = 5.39748212322593},
+            new BasicGeoposition{Latitude = 52.181295119226  , Longitude = 5.39748212322593},
             new BasicGeoposition{Latitude = 52.1793784294277, Longitude = 5.39909915998578}
           })
         }
@@ -54,11 +46,11 @@ namespace WpWinNl.MapBindingDemo.ViewModels
     /// <summary>
     /// Get two shapes with names
     /// </summary>
-    public static IEnumerable<PointList> GetAreas()
+    public static IEnumerable<LinearList> GetAreas()
     {
-      var result = new List<PointList>
+      var result = new List<LinearList>
       {
-        new PointList
+        new LinearList
         {
           Name = "Area1",
           Points= new Geopath(new[]{
@@ -68,7 +60,7 @@ namespace WpWinNl.MapBindingDemo.ViewModels
             new BasicGeoposition{Latitude = 52.180378222838 , Longitude = 5.39925254881382}
           })
         },
-        new PointList
+        new LinearList
         {
           Name = "Area2",
            Points= new Geopath(new[]{
@@ -85,56 +77,6 @@ namespace WpWinNl.MapBindingDemo.ViewModels
         }
       };
       return result;
-    }
-
-    /// <summary>
-    /// Get 50 random point in the view
-    /// </summary>
-    public static IEnumerable<PointList> GetRandomPoints(Geopoint point1, Geopoint point2, int nrOfPoints)
-    {
-      var result = new List<PointList>();
-      var p1 = new BasicGeoposition
-      {
-        Latitude = Math.Min(point1.Position.Latitude, point2.Position.Latitude),
-        Longitude = Math.Min(point1.Position.Longitude, point2.Position.Longitude)
-      };
-      var p2 = new BasicGeoposition
-      {
-        Latitude = Math.Max(point1.Position.Latitude, point2.Position.Latitude),
-        Longitude = Math.Max(point1.Position.Longitude, point2.Position.Longitude)
-      };
-
-      var dLat = p2.Latitude - p1.Latitude;
-      var dLon = p2.Longitude - p1.Longitude;
-
-      var r = new Random(DateTime.Now.Millisecond);
-      for (var i = 0; i < nrOfPoints; i++)
-      {
-        var item = new PointList
-                   {
-                     Name = "Point " + i,
-                     Points = new Geopath(new[]
-                                          {
-                                            new BasicGeoposition
-                                            {
-                                              Latitude = p1.Latitude + (r.NextDouble()*dLat),
-                                              Longitude = p1.Longitude + (r.NextDouble()*dLon)
-                                            }
-                                          })
-                   };
-        result.Add(item);
-      }
-      return result;
-
-    }
-
-    public ICommand SelectCommand
-    {
-      get
-      {
-        return new RelayCommand<MapSelectionParameters>(
-          (p) => DispatcherHelper.CheckBeginInvokeOnUI(() =>Messenger.Default.Send(new MessageDialogMessage(Name, "Selected object", "Ok", "Cancel"))));
-      }
     }
   }
 }

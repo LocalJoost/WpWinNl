@@ -17,5 +17,6 @@ namespace WpWinNl.Maps
     {
       return new MapPolygon { Path = path, FillColor = Color, StrokeDashed = StrokeDashed, StrokeThickness = Width, StrokeColor = StrokeColor, ZIndex = ZIndex};
     }
+
   }
 }

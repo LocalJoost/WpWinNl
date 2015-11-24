@@ -12,8 +12,8 @@ namespace WpWinNl.MapBindingDemo.ViewModels
         public MapBindingViewModel()
         {
             Icons = new ObservableCollection<PointList>();
-            Lines = new ObservableCollection<PointList>();
-            Polygons = new ObservableCollection<PointList>();
+            Lines = new ObservableCollection<LinearList>();
+            Polygons = new ObservableCollection<LinearList>();
         }
 
 
@@ -25,8 +25,8 @@ namespace WpWinNl.MapBindingDemo.ViewModels
         }
 
         public ObservableCollection<PointList> Icons { get; set; }
-        public ObservableCollection<PointList> Lines { get; set; }
-        public ObservableCollection<PointList> Polygons { get; set; }
+        public ObservableCollection<LinearList> Lines { get; set; }
+        public ObservableCollection<LinearList> Polygons { get; set; }
 
         public void DeleteAll()
         {
@@ -59,19 +59,14 @@ namespace WpWinNl.MapBindingDemo.ViewModels
         public void LoadLines()
         {
             Lines.Clear();
-            Lines.AddRange(PointList.GetLines());
+            Lines.AddRange(LinearList.GetLines());
         }
 
         public void LoadPolygons()
         {
             Polygons.Clear();
-            Polygons.AddRange(PointList.GetAreas());
+            Polygons.AddRange(LinearList.GetAreas());
         }
 
-        public void SelectCommand()
-        {
-            Polygons.Clear();
-            Polygons.AddRange(PointList.GetAreas());
-        }
     }
 }
