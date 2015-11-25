@@ -1,8 +1,6 @@
 ﻿using System.Collections.ObjectModel;
-using System.Windows.Input;
 using Windows.Devices.Geolocation;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
 using WpWinNl.MapBindingDemo.Models;
 using WpWinNl.Utilities;
 
@@ -36,18 +34,19 @@ namespace WpWinNl.MapBindingDemo.ViewModels
       Icons.Clear();
       Lines.Clear();
       Polygons.Clear();
+      MultiPolygons.Clear();
     }
 
-    private GeoboundingBox area;
+    private GeoboundingBox _area;
 
     public GeoboundingBox Area
     {
-      get { return area; }
+      get { return _area; }
       set
       {
-        if (area != value)
+        if (_area != value)
         {
-          area = value;
+          _area = value;
           RaisePropertyChanged(() => Area);
         }
       }
@@ -55,8 +54,8 @@ namespace WpWinNl.MapBindingDemo.ViewModels
 
     public void LoadIcons()
     {
-      Icons.AddRange(PointList.GetRandomPoints(new Geopoint(area.NorthwestCorner),
-        new Geopoint(area.SoutheastCorner), 50));
+      Icons.AddRange(PointList.GetRandomPoints(new Geopoint(_area.NorthwestCorner),
+        new Geopoint(_area.SoutheastCorner), 50));
     }
 
     public void LoadLines()
