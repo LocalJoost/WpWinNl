@@ -6,19 +6,18 @@ using GalaSoft.MvvmLight.Threading;
 using WpWinNl.Behaviors;
 using WpWinNl.Maps;
 
-namespace WpWinNl.MapBindingDemo.ViewModels
+namespace WpWinNl.MapBindingDemo.Models
 {
   public class GeometryProvider : ViewModelBase
   {
     public string Name { get; set; }
 
-    public ICommand SelectCommand
+    public ICommand SelectCommand => new RelayCommand<MapSelectionParameters>(Select);
+
+    public void Select(MapSelectionParameters parameters)
     {
-      get
-      {
-        return new RelayCommand<MapSelectionParameters>(
-          (p) => DispatcherHelper.CheckBeginInvokeOnUI(() =>Messenger.Default.Send(new MessageDialogMessage(Name, "Selected object", "Ok", "Cancel"))));
-      }
+      DispatcherHelper.CheckBeginInvokeOnUI(
+        () => Messenger.Default.Send(new MessageDialogMessage(Name, "Selected object", "Ok", "Cancel")));
     }
   }
 }

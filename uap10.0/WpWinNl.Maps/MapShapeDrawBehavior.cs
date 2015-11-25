@@ -23,7 +23,7 @@ namespace WpWinNl.Maps
   {
     public MapShapeDrawBehavior()
     {
-      EventToCommandMappers = new ObservableCollection<EventToCommandMapper>();
+      EventToHandlerMappers = new ObservableCollection<EventToHandlerMapper>();
     }
     protected override void OnAttached()
     {
@@ -91,7 +91,7 @@ namespace WpWinNl.Maps
 
     private void AddEventMappings()
     {
-      foreach (var mapper in EventToCommandMappers)
+      foreach (var mapper in EventToHandlerMappers)
       {
         var evt = AssociatedObject.GetType().GetRuntimeEvent(mapper.EventName);
         if (evt != null)
@@ -120,7 +120,7 @@ namespace WpWinNl.Maps
       return tapPoint;
     }
 
-    private void AddEventMapping(EventToCommandMapper mapper)
+    private void AddEventMapping(EventToHandlerMapper mapper)
     {
       Observable.FromEventPattern<object>(AssociatedObject, mapper.EventName)
         .Subscribe(se =>
@@ -150,7 +150,7 @@ namespace WpWinNl.Maps
               SelectTime = DateTimeOffset.Now
             };
 
-            var t = shapesOnLayer.Count();
+            var t = shapesOnLayer.Count;
             if (t != 0)
             {
               Debug.WriteLine("Found {0} shapes on layer {1}", t, LayerName);
@@ -158,7 +158,14 @@ namespace WpWinNl.Maps
 
             foreach (var shape in shapesOnLayer)
             {
-              FireViewmodelCommand(shape.ReadData<object>(), mapper.CommandName, selParams);
+              if (!string.IsNullOrWhiteSpace(mapper.MethodName))
+              {
+                FireViewmodelMethod(shape.ReadData<object>(), mapper.MethodName, selParams);
+              }
+              else if (!string.IsNullOrWhiteSpace(mapper.CommandName))
+              {
+                FireViewmodelCommand(shape.ReadData<object>(), mapper.CommandName, selParams);
+              }
             }
           }
         });
@@ -172,6 +179,16 @@ namespace WpWinNl.Maps
         var commandGetter = dcType.GetRuntimeMethod("get_" + commandName, new Type[0]);
         var command = commandGetter?.Invoke(viewModel, null) as ICommand;
         command?.Execute(selParams);
+      }
+    }
+
+    private void FireViewmodelMethod(object viewModel, string methodName, MapSelectionParameters selParams)
+    {
+      if (viewModel != null && !string.IsNullOrWhiteSpace(methodName))
+      {
+        var dcType = viewModel.GetType();
+        var method = dcType.GetRuntimeMethod(methodName, new[] {typeof(MapSelectionParameters)});
+        method?.Invoke(viewModel, new object[]{selParams});
       }
     }
 
@@ -267,25 +284,25 @@ namespace WpWinNl.Maps
 
     #endregion
 
-    #region EventToCommandMappers
+    #region EventToHandlerMappers
 
     /// <summary>
-    /// EventToCommandMappers Property name
+    /// EventToHandlerMappers Property name
     /// </summary>
-    public const string EventToCommandMappersPropertyName = "EventToCommandMappers";
+    public const string EventToCommandMappersPropertyName = "EventToHandlerMappers";
 
-    public ObservableCollection<EventToCommandMapper> EventToCommandMappers
+    public ObservableCollection<EventToHandlerMapper> EventToHandlerMappers
     {
-      get { return (ObservableCollection<EventToCommandMapper>)GetValue(EventToCommandMappersProperty); }
-      set { SetValue(EventToCommandMappersProperty, value); }
+      get { return (ObservableCollection<EventToHandlerMapper>)GetValue(EventToHandlerMappersProperty); }
+      set { SetValue(EventToHandlerMappersProperty, value); }
     }
 
     /// <summary>
-    /// EventToCommandMappers Property definition
+    /// EventToHandlerMappers Property definition
     /// </summary>
-    public static readonly DependencyProperty EventToCommandMappersProperty = DependencyProperty.Register(
+    public static readonly DependencyProperty EventToHandlerMappersProperty = DependencyProperty.Register(
         EventToCommandMappersPropertyName,
-        typeof(ObservableCollection<EventToCommandMapper>),
+        typeof(ObservableCollection<EventToHandlerMapper>),
         typeof(MapShapeDrawBehavior),
         new PropertyMetadata(null));
 

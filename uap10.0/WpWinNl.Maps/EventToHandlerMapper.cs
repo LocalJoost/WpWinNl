@@ -2,7 +2,7 @@
 
 namespace WpWinNl.Maps
 {
-  public class EventToCommandMapper : FrameworkElement
+  public class EventToHandlerMapper : FrameworkElement
   {
     #region EventName
 
@@ -23,7 +23,7 @@ namespace WpWinNl.Maps
     public static readonly DependencyProperty EventNameProperty = DependencyProperty.Register(
       EventNamePropertyName,
       typeof (string),
-      typeof (EventToCommandMapper),
+      typeof (EventToHandlerMapper),
       new PropertyMetadata(default(string)));
 
     #endregion
@@ -47,9 +47,33 @@ namespace WpWinNl.Maps
     public static readonly DependencyProperty CommandNameProperty = DependencyProperty.Register(
         CommandNamePropertyName,
         typeof(string),
-        typeof(EventToCommandMapper),
+        typeof(EventToHandlerMapper),
         new PropertyMetadata(default(string)));
 
+    #endregion
+
+    #region MethodName
+
+    /// <summary>
+    /// MethodName Property name
+    /// </summary>
+    public const string MethodNamePropertyName = "MethodName";
+
+    public string MethodName
+    {
+      get { return (string)GetValue(MethodNameProperty); }
+      set { SetValue(MethodNameProperty, value); }
+    }
+
+    /// <summary>
+    /// MethodName Property definition
+    /// </summary>
+    public static readonly DependencyProperty MethodNameProperty = DependencyProperty.Register(
+        MethodNamePropertyName,
+        typeof(string),
+        typeof(EventToHandlerMapper),
+        new PropertyMetadata(default(string)));
+  
     #endregion
   }
 }

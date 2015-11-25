@@ -31,36 +31,36 @@
             <interactivity:Interaction.Behaviors>
                 <mapbinding:MapViewAreaBindingBehavior MapViewArea="{x:Bind ViewModel.Area, Mode=TwoWay}"></mapbinding:MapViewAreaBindingBehavior>
                 <mapbinding:MapShapeDrawBehavior LayerName="Points" ItemsSource="{x:Bind ViewModel.Icons, Converter={StaticResource MapObjectsListConverter}}" PathPropertyName="Point">
-                    <mapbinding:MapShapeDrawBehavior.EventToCommandMappers>
-                        <mapbinding:EventToCommandMapper EventName="MapElementClick" CommandName="SelectCommand" />
-                    </mapbinding:MapShapeDrawBehavior.EventToCommandMappers>
+                    <mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
+                        <mapbinding:EventToHandlerMapper EventName="MapElementClick" CommandName="SelectCommand" />
+                    </mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
                     <mapbinding:MapShapeDrawBehavior.ShapeDrawer>
-                        <mapbinding:MapIconDrawer  ImageUri="ms-appx:///Assets/winlogo.png" CollisionBehaviorDesired="RemainVisible"/>
+                        <mapbinding:MapIconDrawer ImageUri="ms-appx:///Assets/winlogo.png" CollisionBehaviorDesired="RemainVisible"/>
                     </mapbinding:MapShapeDrawBehavior.ShapeDrawer>
                 </mapbinding:MapShapeDrawBehavior>
 
                 <mapbinding:MapShapeDrawBehavior LayerName="Lines" ItemsSource="{x:Bind ViewModel.Lines, Converter={StaticResource MapObjectsListConverter}}" PathPropertyName="Points">
-                    <mapbinding:MapShapeDrawBehavior.EventToCommandMappers>
-                        <mapbinding:EventToCommandMapper EventName="MapElementClick" CommandName="SelectCommand"/>
-                    </mapbinding:MapShapeDrawBehavior.EventToCommandMappers>
+                    <mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
+                        <mapbinding:EventToHandlerMapper EventName="MapElementClick" CommandName="SelectCommand"/>
+                    </mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
                     <mapbinding:MapShapeDrawBehavior.ShapeDrawer>
                         <mapbinding:MapPolylineDrawer Color="BlueViolet"/>
                     </mapbinding:MapShapeDrawBehavior.ShapeDrawer>
                 </mapbinding:MapShapeDrawBehavior>
 
                 <mapbinding:MapShapeDrawBehavior LayerName="Shapes" ItemsSource="{x:Bind ViewModel.Polygons, Converter={StaticResource MapObjectsListConverter}}" PathPropertyName="Points">
-                    <mapbinding:MapShapeDrawBehavior.EventToCommandMappers>
-                        <mapbinding:EventToCommandMapper EventName="MapTapped" CommandName="SelectCommand"/>
-                    </mapbinding:MapShapeDrawBehavior.EventToCommandMappers>
+                    <mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
+                        <mapbinding:EventToHandlerMapper EventName="MapTapped" CommandName="SelectCommand"/>
+                    </mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
                     <mapbinding:MapShapeDrawBehavior.ShapeDrawer>
                         <mapbinding:MapPolygonDrawer Color="Green" Width="10"/>
                     </mapbinding:MapShapeDrawBehavior.ShapeDrawer>
                 </mapbinding:MapShapeDrawBehavior>
 
                 <mapbinding:MapShapeDrawBehavior LayerName="MultiShapes" ItemsSource="{x:Bind ViewModel.MultiPolygons, Converter={StaticResource MapObjectsListConverter}}" PathPropertyName="Paths">
-                    <mapbinding:MapShapeDrawBehavior.EventToCommandMappers>
-                        <mapbinding:EventToCommandMapper EventName="MapTapped" CommandName="SelectCommand"/>
-                    </mapbinding:MapShapeDrawBehavior.EventToCommandMappers>
+                    <mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
+                        <mapbinding:EventToHandlerMapper EventName="MapTapped" MethodName="Select"/>
+                    </mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
                     <mapbinding:MapShapeDrawBehavior.ShapeDrawer>
                         <mapbinding:MapMultiPolygonDrawer Color="OrangeRed" StrokeColor="Crimson" Width="2" StrokeDashed="True"/>
                     </mapbinding:MapShapeDrawBehavior.ShapeDrawer>

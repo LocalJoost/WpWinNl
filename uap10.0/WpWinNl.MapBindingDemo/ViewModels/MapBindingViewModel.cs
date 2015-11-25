@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using Windows.Devices.Geolocation;
-using Windows.UI.Xaml.Controls.Maps;
 using GalaSoft.MvvmLight;
 using WpWinNl.MapBindingDemo.Models;
 using WpWinNl.Utilities;

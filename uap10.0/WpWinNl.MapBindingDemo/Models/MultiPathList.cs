@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Windows.Devices.Geolocation;
-using WpWinNl.MapBindingDemo.ViewModels;
 
 namespace WpWinNl.MapBindingDemo.Models
 {
