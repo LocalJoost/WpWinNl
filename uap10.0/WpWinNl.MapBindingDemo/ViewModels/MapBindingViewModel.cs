@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using Windows.Devices.Geolocation;
+using Windows.UI.Xaml.Controls.Maps;
 using GalaSoft.MvvmLight;
 using WpWinNl.MapBindingDemo.Models;
 using WpWinNl.Utilities;
@@ -14,14 +15,18 @@ namespace WpWinNl.MapBindingDemo.ViewModels
       Lines = new ObservableCollection<LinearList>();
       Polygons = new ObservableCollection<LinearList>();
       MultiPolygons = new ObservableCollection<MultiPathList>();
+      Center = new Geopoint(new BasicGeoposition {Latitude = 0, Longitude = 0});
+      ZoomLevel = 0;
     }
 
 
     public void ShowArea()
     {
-      Area = new GeoboundingBox(
-        new BasicGeoposition { Latitude = 52.1848798915744, Longitude = 5.39574773982167 },
-        new BasicGeoposition { Latitude = 52.1779848542064, Longitude = 5.40379419922829 });
+      ZoomLevel = 16;
+      Center = new Geopoint(new BasicGeoposition
+      {
+        Latitude = 52.1814323728904, Longitude = 5.39977096952498
+      });
     }
 
     public ObservableCollection<PointList> Icons { get; set; }
@@ -38,22 +43,29 @@ namespace WpWinNl.MapBindingDemo.ViewModels
     }
 
     private GeoboundingBox _area;
-
     public GeoboundingBox Area
     {
       get { return _area; }
-      set
-      {
-        if (_area != value)
-        {
-          _area = value;
-          RaisePropertyChanged(() => Area);
-        }
-      }
+      set { Set(() => Area, ref _area, value); }
+    }
+
+    private double _zoomlevel;
+    public double ZoomLevel
+    {
+      get { return _zoomlevel; }
+      set { Set(() => ZoomLevel, ref _zoomlevel, value); }
+    }
+
+    private Geopoint _center;
+    public Geopoint Center
+    {
+      get { return _center; }
+      set { Set(() => Center, ref _center, value); }
     }
 
     public void LoadIcons()
     {
+
       Icons.AddRange(PointList.GetRandomPoints(new Geopoint(_area.NorthwestCorner),
         new Geopoint(_area.SoutheastCorner), 50));
     }

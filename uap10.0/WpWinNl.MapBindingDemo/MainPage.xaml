@@ -27,7 +27,7 @@
         <interactivity:Interaction.Behaviors>
             <behaviors:MessageDialogBehavior/>
         </interactivity:Interaction.Behaviors>
-        <maps:MapControl x:Name="MyMap" Grid.Row="0">
+        <maps:MapControl x:Name="MyMap" Grid.Row="0" ZoomLevel="{x:Bind ViewModel.ZoomLevel, Mode=OneWay}" Center="{x:Bind ViewModel.Center, Mode=OneWay}">
             <interactivity:Interaction.Behaviors>
                 <mapbinding:MapViewAreaBindingBehavior MapViewArea="{x:Bind ViewModel.Area, Mode=TwoWay}"></mapbinding:MapViewAreaBindingBehavior>
                 <mapbinding:MapShapeDrawBehavior LayerName="Points" ItemsSource="{x:Bind ViewModel.Icons, Converter={StaticResource MapObjectsListConverter}}" PathPropertyName="Point">
