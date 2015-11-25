@@ -109,6 +109,7 @@
   <ItemGroup>
     <Compile Include="EventAsync.cs" />
     <Compile Include="EventToCommandMapper.cs" />
+    <Compile Include="MapViewAreaBindingBehavior.cs" />
     <Compile Include="MapBindingHelpers.cs" />
     <Compile Include="MapElementProperties.cs" />
     <Compile Include="MapExtensions.cs" />

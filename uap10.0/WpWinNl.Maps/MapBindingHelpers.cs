@@ -47,7 +47,7 @@ namespace WpWinNl.Maps
          DependencyProperty.RegisterAttached("LayerName",
          typeof(string),
          typeof(MapBindingHelpers),
-         new PropertyMetadata(default(string), LayerNameChanged));
+         new PropertyMetadata(default(string)));
 
     // Called when Property is retrieved
     public static string GetLayerName(this DependencyObject obj)
@@ -63,17 +63,6 @@ namespace WpWinNl.Maps
       obj.SetValue(LayerNameProperty, value);
     }
 
-    // Called when property is changed
-    private static void LayerNameChanged(
-     object sender,
-     DependencyPropertyChangedEventArgs args)
-    {
-      var attachedObject = sender as FrameworkElement;
-      if (attachedObject != null)
-      {
-        // do whatever is necessary
-      }
-    }
     #endregion
 
     public static void SetLayer(this DependencyObject element, string name)
@@ -85,44 +74,5 @@ namespace WpWinNl.Maps
     {
       return GetLayerName(element);
     }
-
-    #region Attached Dependency Property MapViewArea
-    public static readonly DependencyProperty MapViewAreaProperty =
-         DependencyProperty.RegisterAttached("MapViewArea",
-         typeof(GeoboundingBox),
-         typeof(MapBindingHelpers),
-         new PropertyMetadata(default(GeoboundingBox), MapViewAreaChanged));
-
-    // Called when Property is retrieved
-    public static GeoboundingBox GetMapViewArea(DependencyObject obj)
-    {
-      return obj.GetValue(MapViewAreaProperty) as GeoboundingBox;
-    }
-
-    // Called when Property is set
-    public static void SetMapViewArea(
-       DependencyObject obj,
-       GeoboundingBox value)
-    {
-      obj.SetValue(MapViewAreaProperty, value);
-    }
-
-    // Called when property is changed
-    private static void MapViewAreaChanged(
-     object sender,
-     DependencyPropertyChangedEventArgs args)
-    {
-      var attachedObject = sender as MapControl;
-      if (attachedObject != null)
-      {
-        var box = args.NewValue as GeoboundingBox;
-        if (box != null)
-        {
-          attachedObject.TrySetViewBoundsAsync(box, new Thickness(1.0), MapAnimationKind.Bow);
-        }
-      }
-    }
-    #endregion
-
   }
 }
