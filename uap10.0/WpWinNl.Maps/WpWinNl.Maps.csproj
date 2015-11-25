@@ -114,6 +114,7 @@
     <Compile Include="MapExtensions.cs" />
     <Compile Include="MapIconDrawer.cs" />
     <Compile Include="MapLinearShapeDrawer.cs" />
+    <Compile Include="MapMultiPolygonDrawer.cs" />
     <Compile Include="MapPolygonDrawer.cs" />
     <Compile Include="MapPolylineDrawer.cs" />
     <Compile Include="MapSelectionParameters.cs" />

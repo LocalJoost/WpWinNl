@@ -100,10 +100,11 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\GeometryProvider.cs" />
-    <Compile Include="ViewModels\PointList.cs" />
+    <Compile Include="Models\GeometryProvider.cs" />
+    <Compile Include="Models\MultiPathList.cs" />
+    <Compile Include="Models\PointList.cs" />
     <Compile Include="ViewModels\MapBindingViewModel.cs" />
-    <Compile Include="ViewModels\LinearList.cs" />
+    <Compile Include="Models\LinearList.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

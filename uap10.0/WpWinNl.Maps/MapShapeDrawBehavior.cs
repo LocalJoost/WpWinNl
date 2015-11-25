@@ -75,13 +75,13 @@ namespace WpWinNl.Maps
       }
 
       var p = locationData as Geopath;
-      if (p != null)
+      if (p != null && p.Positions.Any())
       {
         return ShapeDrawer.CreateShape(viewModel, p);
       }
 
       var l = locationData as IList<Geopath>;
-      if (l != null)
+      if (l != null && l.Any() && l.All(path => path.Positions.Any()))
       {
         return ShapeDrawer.CreateShape(viewModel, l);
       }

@@ -1,7 +1,6 @@
 ﻿<Page
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:WpWinNl.MapBindingDemo"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
@@ -17,7 +16,9 @@
                 <AppBarButton Label="show area"  Click="{x:Bind ViewModel.ShowArea}" />
             </CommandBar.SecondaryCommands>
             <AppBarButton Label="Lines" Icon="Italic" Click="{x:Bind ViewModel.LoadLines}" />
-            <AppBarButton Label="Polygons" Icon="BrowsePhotos"  Click="{x:Bind ViewModel.LoadPolygons}" />
+            <AppBarButton Label="Polygons" Icon="Placeholder"  Click="{x:Bind ViewModel.LoadPolygons}" />
+            <AppBarButton Label="Polygons" Icon="Pictures"  Click="{x:Bind ViewModel.LoadMultiPolygons}" />
+
             <AppBarButton Label="Points" Icon="MapPin" Click="{x:Bind ViewModel.LoadIcons}" />
             <AppBarButton Label="Delete all" Icon="Delete" Click="{x:Bind ViewModel.DeleteAll}"  />
         </CommandBar>
@@ -53,6 +54,15 @@
                     </mapbinding:MapShapeDrawBehavior.EventToCommandMappers>
                     <mapbinding:MapShapeDrawBehavior.ShapeDrawer>
                         <mapbinding:MapPolygonDrawer Color="Green" Width="10"/>
+                    </mapbinding:MapShapeDrawBehavior.ShapeDrawer>
+                </mapbinding:MapShapeDrawBehavior>
+
+                <mapbinding:MapShapeDrawBehavior LayerName="MultiShapes" ItemsSource="{x:Bind ViewModel.MultiPolygons, Converter={StaticResource MapObjectsListConverter}}" PathPropertyName="Paths">
+                    <mapbinding:MapShapeDrawBehavior.EventToCommandMappers>
+                        <mapbinding:EventToCommandMapper EventName="MapTapped" CommandName="SelectCommand"/>
+                    </mapbinding:MapShapeDrawBehavior.EventToCommandMappers>
+                    <mapbinding:MapShapeDrawBehavior.ShapeDrawer>
+                        <mapbinding:MapMultiPolygonDrawer Color="OrangeRed" StrokeColor="Crimson" Width="2" StrokeDashed="True"/>
                     </mapbinding:MapShapeDrawBehavior.ShapeDrawer>
                 </mapbinding:MapShapeDrawBehavior>
             </interactivity:Interaction.Behaviors>

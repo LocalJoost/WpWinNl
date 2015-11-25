@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Windows.Devices.Geolocation;
+using WpWinNl.MapBindingDemo.ViewModels;
 
-namespace WpWinNl.MapBindingDemo.ViewModels
+namespace WpWinNl.MapBindingDemo.Models
 {
   public class LinearList : GeometryProvider
   {
