@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "wp8", "wp8", "{318DC063-BBE8-40A2-9DCA-F8F4A18C38E8}"
 EndProject
@@ -10,13 +10,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSilverlightSerializer", "win81\TestSilverlightSerializer\TestSilverlightSerializer.csproj", "{F692CCDB-8A51-4A29-A4F6-DB87E426C70D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpWinNl.External", "wp8\WpWinNl.External\WpWinNl.External.csproj", "{0408668E-D49D-4F81-8615-AECF8567F127}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{7ED582F7-5B1F-499D-9152-54A7B7E0DDEF}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpWinNl", "wp8\WpWinNl\WpWinNl.csproj", "{69C5F17E-99EF-421D-870F-1B7146F6894E}"
 EndProject
@@ -36,6 +29,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{E0C3FE5F-9BE8-482B-9E4A-93D2388DA695}"
 	ProjectSection(SolutionItems) = preProject
 		tools\install.ps1 = tools\install.ps1
+		tools\nuget.exe = tools\nuget.exe
 		tools\packagebuilder.cmd = tools\packagebuilder.cmd
 		tools\uninstall.ps1 = tools\uninstall.ps1
 	EndProjectSection
@@ -301,7 +295,6 @@ Global
 		{D3BC1DC6-76E1-485B-A2EE-1BF1E30E1BE6}.Release|x64.ActiveCfg = Release|x64
 		{D3BC1DC6-76E1-485B-A2EE-1BF1E30E1BE6}.Release|x64.Build.0 = Release|x64
 		{D3BC1DC6-76E1-485B-A2EE-1BF1E30E1BE6}.Release|x86.ActiveCfg = Release|x86
-		{D3BC1DC6-76E1-485B-A2EE-1BF1E30E1BE6}.Release|x86.Build.0 = Release|x86
 		{80793046-A02A-4016-A923-524563AAD39D}.Debug|Any CPU.ActiveCfg = Release|Any CPU
 		{80793046-A02A-4016-A923-524563AAD39D}.Debug|ARM.ActiveCfg = Debug|ARM
 		{80793046-A02A-4016-A923-524563AAD39D}.Debug|ARM.Build.0 = Debug|ARM

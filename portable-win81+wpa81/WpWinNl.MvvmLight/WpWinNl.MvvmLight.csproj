@@ -20,7 +20,6 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
     <NuGetPackageImportStamp>d4ab092b</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -72,16 +71,6 @@
     <Compile Include="Utilities\SuspensionHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WpWinNl.External\WpWinNl.External.csproj">
-      <Project>{f350a6f5-e09b-4b5f-9f10-45d014f45f63}</Project>
-      <Name>WpWinNl.External</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WpWinNl\WpWinNl.csproj">
-      <Project>{e0a7e3ad-68e8-44bd-9b84-f3d47704184a}</Project>
-      <Name>WpWinNl</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight">
       <HintPath>..\..\packages\Portable.MvvmLightLibs.5.0.2.0\lib\portable-net45+wp8+wpa81+netcore45+monoandroid+monotouch\GalaSoft.MvvmLight.dll</HintPath>
     </Reference>
@@ -99,14 +88,17 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WpWinNl.External\WpWinNl.External.csproj">
+      <Project>{f350a6f5-e09b-4b5f-9f10-45d014f45f63}</Project>
+      <Name>WpWinNl.External</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WpWinNl\WpWinNl.csproj">
+      <Project>{e0a7e3ad-68e8-44bd-9b84-f3d47704184a}</Project>
+      <Name>WpWinNl</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-  </Target>
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>

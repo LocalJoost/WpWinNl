@@ -31,7 +31,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\output\wpwinnl_basic\lib\uap10.0\</OutputPath>
     <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -137,7 +137,6 @@
     <Compile Include="Utilities\ManifestAppInfo.cs" />
     <Compile Include="Utilities\ObservableCollectionExtensions.cs" />
     <Compile Include="Utilities\PointExtensions.cs" />
-    <Compile Include="Utilities\RectangleF.cs" />
     <Compile Include="Utilities\ResettableObservableCollection.cs" />
     <Compile Include="Utilities\StorageFolderExtensions.cs" />
     <Compile Include="Utilities\StorageHelper.cs" />

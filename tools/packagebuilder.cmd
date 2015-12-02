@@ -1,3 +1,4 @@
+echo on
 cd /d "%~dp0"
 del /S/Q ..\output\*.pdb
 del /S/Q ..\output\Galasoft.*
@@ -34,6 +35,6 @@ del /S/Q "..\output\wpwinnl_maps\lib\wpa81\WpWinNl.External.pri"
 mkdir ..\output\wpwinnl_basic\tools
 copy *.ps1 ..\output\wpwinnl_basic\tools
 
-..\.nuget\Nuget pack ..\SolutionInfo\WpWinNl.nuspec -BasePath ..\output\wpwinnl -OutputDirectory ..\output 
-..\.nuget\Nuget pack ..\SolutionInfo\WpWinNlBasic.nuspec -BasePath ..\output\wpwinnl_basic -OutputDirectory ..\output 
-..\.nuget\Nuget pack ..\SolutionInfo\WpWinNlMaps.nuspec -BasePath ..\output\wpwinnl_maps -OutputDirectory ..\output 
+Nuget pack ..\SolutionInfo\WpWinNl.nuspec -BasePath ..\output\wpwinnl -OutputDirectory ..\output 
+nuget\Nuget pack ..\SolutionInfo\WpWinNlBasic.nuspec -BasePath ..\output\wpwinnl_basic -OutputDirectory ..\output 
+nuget\Nuget pack ..\SolutionInfo\WpWinNlMaps.nuspec -BasePath ..\output\wpwinnl_maps -OutputDirectory ..\output 
