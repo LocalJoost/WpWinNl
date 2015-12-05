@@ -46,6 +46,19 @@ del /S/Q "..\output\wpwinnl_maps\lib\wpa81\WpWinNl.External.pri"
 mkdir ..\output\wpwinnl_basic\tools
 copy *.ps1 ..\output\wpwinnl_basic\tools
 
+mkdir ..\output\wpwinnl_basic\lib\uap10.0\WpWinNl\Properties\
+copy ..\uap10.0\wpwinnl\properties\WpWinNl.rd.xml                   ..\output\wpwinnl_basic\lib\uap10.0\WpWinNl\Properties
+mkdir ..\output\wpwinnl_basic\lib\uap10.0\WpWinNl.External\Properties
+copy ..\uap10.0\wpwinnl.external\properties\WpWinNl.External.rd.xml ..\output\wpwinnl_basic\lib\uap10.0\WpWinNl.External\Properties
+
+lib\uap10.0\WpWinNl.External\Properties\WpWinNl.External.rd.xml
+
+mkdir ..\output\wpwinnl\lib\uap10.0\WpWinNl.MvvmLight\Properties
+copy ..\uap10.0\wpwinnl.mvvmlight\properties\WpWinNl.MvvmLight.rd.xml ..\output\wpwinnl\lib\uap10.0\WpWinNl.MvvmLight\Properties
+
+mkdir ..\output\wpwinnl_maps\lib\uap10.0\WpWinNl.Maps\Properties
+copy ..\uap10.0\wpwinnl.maps\properties\WpWinNl.Maps.rd.xml ..\output\wpwinnl_maps\lib\uap10.0\WpWinNl.Maps\Properties
+
 Nuget pack ..\SolutionInfo\WpWinNl.nuspec -BasePath ..\output\wpwinnl -OutputDirectory ..\output 
 Nuget pack ..\SolutionInfo\WpWinNlBasic.nuspec -BasePath ..\output\wpwinnl_basic -OutputDirectory ..\output 
 Nuget pack ..\SolutionInfo\WpWinNlMaps.nuspec -BasePath ..\output\wpwinnl_maps -OutputDirectory ..\output 

@@ -21,6 +21,7 @@
         <dependency id="Microsoft.Xaml.Behaviors.Uwp.Managed" version="1.0.3" />
         <dependency id="MvvmLightLibs" version="5.2.0" />
         <dependency id="WpWinNlBasic" version="3.0.0-alpha" />
+        <dependency id="Rx-Linq" version="2.2.5" />
       </group>
     </dependencies>
 
