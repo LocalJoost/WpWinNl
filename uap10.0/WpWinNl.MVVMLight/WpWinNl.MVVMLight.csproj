@@ -129,7 +129,7 @@
     <Compile Include="Messages\WindowVisibilityMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\SuspensionHelper.cs" />
-    <Content Include="Properties\WpWinNl.MvvmLight.rd.xml" />
+    <EmbeddedResource Include="Properties\WpWinNl.MvvmLight.rd.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WpWinNl.External\WpWinNl.External.csproj">
