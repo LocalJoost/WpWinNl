@@ -51,8 +51,6 @@ copy ..\uap10.0\wpwinnl\properties\WpWinNl.rd.xml                   ..\output\wp
 mkdir ..\output\wpwinnl_basic\lib\uap10.0\WpWinNl.External\Properties
 copy ..\uap10.0\wpwinnl.external\properties\WpWinNl.External.rd.xml ..\output\wpwinnl_basic\lib\uap10.0\WpWinNl.External\Properties
 
-lib\uap10.0\WpWinNl.External\Properties\WpWinNl.External.rd.xml
-
 mkdir ..\output\wpwinnl\lib\uap10.0\WpWinNl.MvvmLight\Properties
 copy ..\uap10.0\wpwinnl.mvvmlight\properties\WpWinNl.MvvmLight.rd.xml ..\output\wpwinnl\lib\uap10.0\WpWinNl.MvvmLight\Properties
 
