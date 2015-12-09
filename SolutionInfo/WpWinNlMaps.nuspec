@@ -6,6 +6,8 @@
     <authors>Joost van Schaik</authors>
     <description>This is a map binding suite for Windows Phone 8.1 and UWP based on WinWinNl</description>
     <summary>
+      Sample app for Windows Phone 8.1 on https://github.com/LocalJoost/WpWinNl/tree/master/wpa81/WpWinNl.MapBindingDemo ;
+      UWP app sample on https://github.com/LocalJoost/WpWinNl/tree/uwp/uap10.0/WpWinNl.MapBindingDemo
     </summary>
     <language>en-US</language>
     <licenseUrl>http://wpwinnl.codeplex.com/license</licenseUrl>
