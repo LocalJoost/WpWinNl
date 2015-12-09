@@ -41,13 +41,11 @@ del /S/Q "..\output\wpwinnl_maps\lib\wpa81\WpWinNl.pri"
 del /S/Q "..\output\wpwinnl_maps\lib\wpa81\WpWinNl.External.dll"
 del /S/Q "..\output\wpwinnl_maps\lib\wpa81\WpWinNl.External.pri"
 
-
-
 mkdir ..\output\wpwinnl_basic\tools
 copy *.ps1 ..\output\wpwinnl_basic\tools
-
-
 
 Nuget pack ..\SolutionInfo\WpWinNl.nuspec -BasePath ..\output\wpwinnl -OutputDirectory ..\output 
 Nuget pack ..\SolutionInfo\WpWinNlBasic.nuspec -BasePath ..\output\wpwinnl_basic -OutputDirectory ..\output 
 Nuget pack ..\SolutionInfo\WpWinNlMaps.nuspec -BasePath ..\output\wpwinnl_maps -OutputDirectory ..\output 
+
+pause

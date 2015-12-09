@@ -107,6 +107,9 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\SolutionInfo\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
     <Compile Include="Audio\PlaySoundEffectBehavior.cs" />
     <Compile Include="Audio\PlaySoundEffectMessage.cs" />
     <Compile Include="BaseModels\AboutViewModelBase.cs" />

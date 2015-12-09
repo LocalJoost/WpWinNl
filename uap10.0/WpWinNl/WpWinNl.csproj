@@ -107,6 +107,9 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\SolutionInfo\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
     <Compile Include="Behaviors\BaseAnimationBehavior.cs" />
     <Compile Include="Behaviors\BaseScaleBehavior.cs" />
     <Compile Include="Behaviors\ClipToBoundsBehavior.cs" />

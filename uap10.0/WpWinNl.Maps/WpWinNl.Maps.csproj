@@ -107,6 +107,9 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\SolutionInfo\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
     <Compile Include="EventAsync.cs" />
     <Compile Include="EventToHandlerMapper.cs" />
     <Compile Include="MapViewAreaBindingBehavior.cs" />
