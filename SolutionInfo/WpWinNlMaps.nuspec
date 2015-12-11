@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>WpWinNlMaps</id>
-    <version>3.0.1-alpha</version>
+    <version>3.0.2-alpha</version>
     <authors>Joost van Schaik</authors>
     <description>This is a map binding suite for Windows Phone 8.1 and UWP based on WinWinNl</description>
     <summary>
@@ -16,12 +16,12 @@
     <dependencies>
 
       <group targetFramework="wpa81">
-        <dependency id="WpWinNlBasic" version="3.0.0-alpha" />
+        <dependency id="WpWinNlBasic" version="3.0.2-alpha" />
         <dependency id="Rx-Main" version="2.2.5" />
       </group>
       <group targetFramework="uap10.0">
         <dependency id="Microsoft.Xaml.Behaviors.Uwp.Managed" version="1.0.3" />
-        <dependency id="WpWinNlBasic" version="3.0.0-alpha" />
+        <dependency id="WpWinNlBasic" version="3.0.2-alpha" />
         <dependency id="Rx-Linq" version="2.2.5" />
       </group>
     </dependencies>
