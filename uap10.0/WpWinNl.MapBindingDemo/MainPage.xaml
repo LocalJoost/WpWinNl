@@ -59,7 +59,7 @@
 
                 <mapbinding:MapShapeDrawBehavior LayerName="MultiShapes" ItemsSource="{x:Bind ViewModel.MultiPolygons, Converter={StaticResource MapObjectsListConverter}}" PathPropertyName="Paths">
                     <mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
-                        <mapbinding:EventToHandlerMapper EventName="MapTapped" MethodName="Select"/>
+                        <mapbinding:EventToHandlerMapper EventName="MapElementClick" MethodName="Select"/>
                     </mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
                     <mapbinding:MapShapeDrawBehavior.ShapeDrawer>
                         <mapbinding:MapMultiPolygonDrawer Color="OrangeRed" StrokeColor="Crimson" Width="2" StrokeDashed="True"/>
