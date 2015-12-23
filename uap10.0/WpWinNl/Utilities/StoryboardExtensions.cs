@@ -41,15 +41,10 @@ namespace WpWinNl.Utilities
     {
       if (p == null) throw new ArgumentNullException("p");
       Storyboard.SetTarget(t, item);
-#if WINDOWS_PHONE
-      Storyboard.SetTargetProperty(t, new PropertyPath(p));
-#else
       Storyboard.SetTargetProperty(t, item.GetDependencyPropertyName(p));
-#endif
       storyboard.Children.Add(t);
     }
 
-#if NETFX_CORE
     public static void AddAnimation(this Storyboard storyboard,
                                      DependencyObject item, Timeline t, string p)
     {
@@ -58,7 +53,6 @@ namespace WpWinNl.Utilities
       Storyboard.SetTargetProperty(t, p);
       storyboard.Children.Add(t);
     }
-#endif
 
     public static void AddTranslationAnimation(this Storyboard storyboard,
         FrameworkElement fe, Point from, Point to, Duration duration)

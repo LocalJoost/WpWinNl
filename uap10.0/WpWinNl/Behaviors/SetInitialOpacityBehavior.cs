@@ -1,10 +1,5 @@
-﻿using System.Windows;
-using Microsoft.Xaml.Interactivity;
-#if WINDOWS_PHONE
-using System.Windows.Interactivity;
-#else
+﻿using Microsoft.Xaml.Interactivity;
 using Windows.UI.Xaml;
-#endif
 
 namespace WpWinNl.Behaviors
 {

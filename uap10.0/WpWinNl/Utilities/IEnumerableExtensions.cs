@@ -16,14 +16,5 @@ namespace WpWinNl.Utilities
         action(item);
       }
     }
-
-#if WINDOWS_PHONE
-    public static IEnumerable<TC> ConvertAll<T, TC>(
-                                  this IEnumerable<T> inputList,
-                                  Converter<T, TC> convert)
-    {
-      return inputList.Select(t => convert(t));
-    }
-#endif
   }
 }

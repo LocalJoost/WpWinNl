@@ -93,26 +93,15 @@ namespace WpWinNl.Behaviors
       if (!string.IsNullOrWhiteSpace(searchString))
       {
 
-#if WINDOWS_PHONE
-        var decoded = HttpUtility.HtmlDecode(searchString);
-#else
         var decoded = WebUtility.HtmlDecode(searchString);
-#endif
         var queryUri =
           string.Format(
             "https://api.datamarket.azure.com/Data.ashx/Bing/Search/v1/Image?Query=%27{0}%27&$top=1&$format=Atom",
              decoded);
         var request = WebRequest.Create(queryUri) as HttpWebRequest;
         request.Headers["Authorization"] = "Basic " + Base64Encode(string.Format("{0}:{0}", BingSearchKey));
-#if WINDOWS_PHONE
-        var response =
-  Observable.FromAsyncPattern<WebResponse>(
-    request.BeginGetResponse, request.EndGetResponse)();
-        response.Subscribe(WebClientOpenReadCompleted, WebClientOpenReadError);
-#else
         var response = await request.GetResponseAsync();
         WebClientOpenReadCompleted(response);
-#endif
       }
     }
 
@@ -136,15 +125,7 @@ namespace WpWinNl.Behaviors
             var firstImage = doc.Root.Descendants(ns + "MediaUrl").FirstOrDefault();
             if (firstImage != null)
             {
-#if WINDOWS_PHONE
-              Deployment.Current.Dispatcher.BeginInvoke(() =>
-              {
-                CreateImage(firstImage.Value);
-              });
-#else
               CreateImage(firstImage.Value);
-#endif
-
             }
           }
         }
@@ -157,11 +138,7 @@ namespace WpWinNl.Behaviors
       var bi = new BitmapImage
       {
         UriSource = new Uri(imageUrl),
-#if WINDOWS_PHONE
-        CreateOptions = BitmapCreateOptions.BackgroundCreation
-#else
         CreateOptions = BitmapCreateOptions.None
-#endif
       };
       backgroundBrush.ImageSource = bi;
     }
@@ -184,15 +161,5 @@ namespace WpWinNl.Behaviors
         throw new Exception("Error in Base64Encode" + e.Message);
       }
     }
-
-#if WINDOWS_PHONE    
-    /// <summary>
-    /// Called upon a search error (not used)
-    /// </summary>
-    /// <param name="ex"></param>
-    private void WebClientOpenReadError(Exception ex)
-    {
-    }
-#endif
   }
 }

@@ -1,11 +1,5 @@
-﻿using System;
-using Microsoft.Xaml.Interactivity;
-#if WINDOWS_PHONE
-using System.Windows.Controls;
-using Microsoft.Devices;
-#else
+﻿using Microsoft.Xaml.Interactivity;
 using Windows.UI.Xaml.Controls;
-#endif
 
 namespace WpWinNl.Behaviors
 {
@@ -35,12 +29,6 @@ namespace WpWinNl.Behaviors
       {
         AssociatedObject.Text = AssociatedObject.Text.Substring(0, MaxChars);
         AssociatedObject.SelectionStart = MaxChars;
-#if WINDOWS_PHONE
-        if (Vibrate)
-        {
-          VibrateController.Default.Start(TimeSpan.FromMilliseconds(15));
-        }
-#endif
       }
     }
   }

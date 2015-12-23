@@ -33,21 +33,8 @@ namespace WpWinNl.Behaviors
         elementToAnimate.RenderTransform = new CompositeTransform();
         elementToAnimate.RenderTransformOrigin = new Point(0.5, 0.5);
       }
-#if !WINDOWS_PHONE
       AssociatedObject.ManipulationMode = ManipulationModes.All;
-#endif
     }
-
-#if WINDOWS_PHONE
-    void AssociatedObjectManipulationDelta(object sender, ManipulationDeltaEventArgs e)
-    {
-      var dx = e.DeltaManipulation.Translation.X;
-      var dy = e.DeltaManipulation.Translation.Y;
-      var currentPosition = elementToAnimate.GetTranslatePoint();
-      elementToAnimate.SetTranslatePoint(currentPosition.X + dx, currentPosition.Y + dy);
-    }
-
-#else
 
     void AssociatedObjectManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
     {
@@ -56,25 +43,7 @@ namespace WpWinNl.Behaviors
       var currentPosition = elementToAnimate.GetTranslatePoint();
       elementToAnimate.SetTranslatePoint(currentPosition.X + dx, currentPosition.Y + dy);
     }
-#endif
 
-#if WINDOWS_PHONE
-
-    private void AssociatedObjectManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
-    {
-      // Create a storyboard that will emulate a 'flick'
-      var currentPosition = elementToAnimate.GetTranslatePoint();
-      var velocity = e.FinalVelocities.LinearVelocity;
-      var storyboard = new Storyboard { FillBehavior = FillBehavior.HoldEnd };
-
-      var to = new Point(currentPosition.X + (velocity.X / BrakeSpeed),
-          currentPosition.Y + (velocity.Y / BrakeSpeed));
-      storyboard.AddTranslationAnimation(elementToAnimate, currentPosition, to,
-          new Duration(TimeSpan.FromMilliseconds(500)),
-          new CubicEase { EasingMode = EasingMode.EaseOut });
-      storyboard.Begin();
-    }
-#else
     private void AssociatedObjectManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
     {
       // Create a storyboard that will emulate a 'flick'
@@ -89,7 +58,6 @@ namespace WpWinNl.Behaviors
           new CubicEase { EasingMode = EasingMode.EaseOut });
       storyboard.Begin();
     }
-#endif
 
     protected override void OnDetaching()
     {

@@ -1,8 +1,5 @@
-﻿using System.Windows;
-using Microsoft.Xaml.Interactivity;
-#if NETFX_CORE || PORTABLE
+﻿using Microsoft.Xaml.Interactivity;
 using Windows.UI.Xaml;
-#endif
 namespace WpWinNl.Behaviors
 {
 

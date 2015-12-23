@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>WpWinNl</id>
-    <version>3.0.2-alpha</version>
+    <version>3.0.3-alpha</version>
     <authors>Joost van Schaik, Timmy Kokke, #wp7nl</authors>
     <description>A collection of Windows Phone and Windows Store apps utility classes that are created or brought together by the Dutch developer community. Updated for UWP</description>
     <summary></summary>
@@ -13,21 +13,21 @@
     <dependencies>
       <group targetFramework="wpa81">
         <dependency id="MvvmLightLibs" version="5.2.0" />
-        <dependency id="WpWinNlBasic" version="3.0.2-alpha" />
+        <dependency id="WpWinNlBasic" version="3.0.3-alpha" />
       </group>
       <group targetFramework="portable-win81+wpa81">
         <dependency id="MvvmLightLibs" version="5.2.0" />
-        <dependency id="WpWinNlBasic" version="3.0.2-alpha" />
+        <dependency id="WpWinNlBasic" version="3.0.3-alpha" />
       </group>
       <group targetFramework="WindowsPhone8">
         <dependency id="WPtoolkit" version="4.2013.08.16" />
-        <dependency id="WpWinNlBasic" version="3.0.2-alpha" />
+        <dependency id="WpWinNlBasic" version="3.0.3-alpha" />
         <dependency id="MvvmLightLibs" version="5.2.0" />
       </group>
       <group targetFramework="uap10.0">
         <dependency id="Microsoft.Xaml.Behaviors.Uwp.Managed" version="1.0.3" />
         <dependency id="MvvmLightLibs" version="5.2.0" />
-        <dependency id="WpWinNlBasic" version="3.0.2-alpha" />
+        <dependency id="WpWinNlBasic" version="3.0.3-alpha" />
       </group>
     </dependencies>
   </metadata>

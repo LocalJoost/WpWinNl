@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Globalization;
-#if WINDOWS_PHONE
-using System.Windows.Data;
-#else
 using Windows.UI.Xaml.Data;
-#endif
 
 namespace WpWinNl.Converters
 {
@@ -20,6 +16,6 @@ namespace WpWinNl.Converters
     public object ConvertBack(object value, Type targetType, object parameter, string language)
     {
       return ConvertBack(value, targetType, parameter, string.IsNullOrWhiteSpace(language) ? null : new CultureInfo(language));
-        }
+    }
   }
 }
