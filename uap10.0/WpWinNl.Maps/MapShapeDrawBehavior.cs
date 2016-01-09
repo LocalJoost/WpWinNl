@@ -31,6 +31,13 @@ namespace WpWinNl.Maps
       AddEventMappings();
     }
 
+    protected override void OnDetaching()
+    {
+      _collectionObserver?.Dispose();
+      RemoveShapes(AssociatedObject.MapElements.Select(p=> p.ReadData()).ToList());
+      base.OnDetaching();
+    }
+
     /// <summary>
     /// Creates a new shape
     /// </summary>
@@ -52,7 +59,7 @@ namespace WpWinNl.Maps
           var evt = viewModel.GetType().GetRuntimeEvent("PropertyChanged");
           if (evt != null)
           {
-            Observable.FromEventPattern<PropertyChangedEventArgs>(viewModel, "PropertyChanged")
+            var observable = Observable.FromEventPattern<PropertyChangedEventArgs>(viewModel, "PropertyChanged")
               .Subscribe(se =>
               {
                 if (se.EventArgs.PropertyName == PathPropertyName)
@@ -60,6 +67,8 @@ namespace WpWinNl.Maps
                   ReplaceShape(se.Sender);
                 }
               });
+
+            TrackObservable(viewModel, observable);
           }
           return newShape;
         }
@@ -200,6 +209,24 @@ namespace WpWinNl.Maps
       }
     }
 
+    private readonly Dictionary<object,IDisposable> _observedObjects = new Dictionary<object, IDisposable>();
+
+    private void TrackObservable(object viewModel, IDisposable observable)
+    {
+      if (!_observedObjects.ContainsKey(viewModel))
+      {
+        _observedObjects.Add(viewModel, observable);
+      }
+    }
+
+    private void RemoveObservable(object viewModel)
+    {
+      if (_observedObjects.ContainsKey(viewModel))
+      {
+        _observedObjects[viewModel].Dispose();
+        _observedObjects.Remove(viewModel);
+      }
+    }
 
     private void AddNewShape(object viewModel)
     {
@@ -232,7 +259,7 @@ namespace WpWinNl.Maps
       }
     }
 
-    private void RemoveShapes(IEnumerable viewModels)
+    private void RemoveShapes(IList viewModels)
     {
       foreach (var item in viewModels)
       {
@@ -246,6 +273,7 @@ namespace WpWinNl.Maps
       if (shape != null)
       {
         AssociatedObject.MapElements.Remove(shape);
+        RemoveObservable(viewModel);
       }
     }
 
@@ -344,7 +372,8 @@ namespace WpWinNl.Maps
         var evt = newValue.GetType().GetRuntimeEvent("CollectionChanged");
         if (evt != null)
         {
-          Observable.FromEventPattern<NotifyCollectionChangedEventArgs>(newValue, "CollectionChanged")
+          thisobj._collectionObserver?.Dispose();
+          thisobj._collectionObserver = Observable.FromEventPattern<NotifyCollectionChangedEventArgs>(newValue, "CollectionChanged")
             .Subscribe(se =>
                          {
                            switch (se.EventArgs.Action)
@@ -370,9 +399,8 @@ namespace WpWinNl.Maps
 
                              case NotifyCollectionChangedAction.Reset:
                                {
-                                 var toDelete = thisobj.AssociatedObject.MapElements.Where(p => p.GetLayerName() == thisobj.LayerName).ToList();
-                                 toDelete.ForEach(p => thisobj.AssociatedObject.MapElements.Remove(p));
-
+                                 var toDelete = thisobj.AssociatedObject.MapElements.Where(p => p.GetLayerName() == thisobj.LayerName).Select(p=> p.ReadData()).ToList();
+                                 thisobj.RemoveShapes(toDelete);
                                  thisobj.AddNewShapes(thisobj.ItemsSource);
                                  break;
                                }
@@ -383,6 +411,8 @@ namespace WpWinNl.Maps
         thisobj.AddNewShapes(thisobj.ItemsSource);
       }
     }
+
+    private IDisposable _collectionObserver;
 
     #endregion
 

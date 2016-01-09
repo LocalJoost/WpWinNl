@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Reflection;
-using WpWinNl.Utilities;
 
 namespace WpWinNl.Utilities
 {
@@ -18,22 +17,16 @@ namespace WpWinNl.Utilities
       Name = info.Name;
       Info = info;
       CollectionType = Info.PropertyType.GetInterface("IEnumerable", true) != null;
-      //getMethod = info.GetGetMethod(); JSC
-      //setMethod = info.GetSetMethod();
 
       getMethod = info.GetMethod;
       setMethod = info.SetMethod;
 
-      //_get = (GetValue)Delegate.CreateDelegate(typeof(GetValue), getMethod); //JSC
-      //if (setMethod != null) _set = (SetValue)Delegate.CreateDelegate(typeof(SetValue), setMethod); 
       _get = (GetValue)getMethod.CreateDelegate(typeof(GetValue));
       if (setMethod != null) _set = (SetValue)setMethod.CreateDelegate(typeof(SetValue));
     }
 
     public GetSetGeneric(FieldInfo info)
     {
-      MethodInfo getMethod;
-      MethodInfo setMethod = null;
       Name = info.Name;
       FieldInfo = info;
       _get = new GetValue(GetFieldValue);

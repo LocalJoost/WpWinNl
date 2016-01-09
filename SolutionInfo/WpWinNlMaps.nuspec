@@ -2,13 +2,14 @@
 <package>
   <metadata>
     <id>WpWinNlMaps</id>
-    <version>3.0.3-alpha</version>
+    <version>3.0.4-alpha</version>
     <authors>Joost van Schaik</authors>
     <description>This is a map binding suite for Windows Phone 8.1 and UWP based on WinWinNl</description>
     <summary>
       Sample app for Windows Phone 8.1 on https://github.com/LocalJoost/WpWinNl/tree/master/wpa81/WpWinNl.MapBindingDemo ;
       UWP app sample on https://github.com/LocalJoost/WpWinNl/tree/uwp/uap10.0/WpWinNl.MapBindingDemo
     </summary>
+    <releaseNotes>Now keeps track of observables and releases them when shapes are deleted - as well on on OnDetaching</releaseNotes>
     <language>en-US</language>
     <licenseUrl>http://wpwinnl.codeplex.com/license</licenseUrl>
     <projectUrl>http://wpwinnl.codeplex.com</projectUrl>
@@ -16,12 +17,12 @@
     <dependencies>
 
       <group targetFramework="wpa81">
-        <dependency id="WpWinNlBasic" version="3.0.3-alpha" />
+        <dependency id="WpWinNlBasic" version="3.0.4-alpha" />
         <dependency id="Rx-Main" version="2.2.5" />
       </group>
       <group targetFramework="uap10.0">
         <dependency id="Microsoft.Xaml.Behaviors.Uwp.Managed" version="1.0.3" />
-        <dependency id="WpWinNlBasic" version="3.0.3-alpha" />
+        <dependency id="WpWinNlBasic" version="3.0.4-alpha" />
         <dependency id="Rx-Linq" version="2.2.5" />
       </group>
     </dependencies>

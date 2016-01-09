@@ -4,12 +4,13 @@
   <metadata>
 
     <id>WpWinNlBasic</id>
-    <version>3.0.3-alpha</version>
-    <authors>Joost van Schaik, Timmy Kokke, #wp7nl</authors>
+    <version>3.0.4-alpha</version>
+    <authors>Joost van Schaik, Timmy Kokke, #wpnl</authors>
     <description>A collection of Windows Phone and Windows Store apps utility classes that are created or brought together by the Dutch developer community. Updated for UWP</description>
     <summary>
       This part is the basic part, not using MVVMLight
     </summary>
+    <releaseNotes>Update to UWP SilverlightSerializer, now serializes Geopoint as well</releaseNotes>
     <language>en-US</language>
     <licenseUrl>http://wpwinnl.codeplex.com/license</licenseUrl>
     <projectUrl>http://wpwinnl.codeplex.com</projectUrl>

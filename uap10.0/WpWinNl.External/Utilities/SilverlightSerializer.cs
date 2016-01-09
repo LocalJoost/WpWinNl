@@ -135,11 +135,6 @@ namespace WpWinNl.Utilities
       }
     }
 
-    //public static Type SerializerType
-    //{
-    //    get;
-    //    set;
-    //}
 
     /// <summary>
     /// Deserialize to a type
@@ -200,26 +195,6 @@ namespace WpWinNl.Utilities
 
     //Holds a reference to the custom serializers
     private static readonly Dictionary<Type, ISerializeObject> Serializers = new Dictionary<Type, ISerializeObject>();
-    //Dictionary to ensure we only scan an assembly once
-    private static readonly Dictionary<Assembly, bool> Assemblies = new Dictionary<Assembly, bool>();
-
-    /// <summary>
-    /// Register all of the custom serializers in an assembly
-    /// </summary>
-    /// <param name="assembly">Leave blank to register the assembly that the method is called from, or pass an assembly</param>
-    //public static void RegisterSerializationAssembly(Assembly assembly = null)
-    //{
-    //  if (assembly == null)
-    //    //assembly = Assembly.GetCallingAssembly(); JSC
-    //  assembly = Assembly.GetCallingAssembly();
-    //  if (Assemblies.ContainsKey(assembly))
-    //    return;
-    //  Assemblies[assembly] = true;
-    //  ScanAllTypesForAttribute((tp, attr) =>
-    //  {
-    //    Serializers[((SerializerAttribute)attr).SerializesType] = Activator.CreateInstance(tp) as ISerializeObject;
-    //  }, assembly, typeof(SerializerAttribute));
-    //}
 
     //Function to be called when scanning types
     internal delegate void ScanTypeFunction(Type type, Attribute attribute);
@@ -234,18 +209,15 @@ namespace WpWinNl.Utilities
     {
       try
       {
-        //foreach (var tp in assembly.GetTypes()) //JSC
-          foreach (var tp in assembly.DefinedTypes)
+        foreach (var tp in assembly.DefinedTypes)
         {
           if (attribute != null)
           {
-            //var attrs = Attribute.GetCustomAttributes(tp, attribute, false); //JSC
             var attrs = tp.GetCustomAttributes(attribute, false);
 
             if (attrs != null)
             {
               foreach (var attr in attrs)
-                //function(tp, attr); //JSC
               function(tp.AsType(), (Attribute)attr);
             }
           }
@@ -286,7 +258,6 @@ namespace WpWinNl.Utilities
         {
           if (!PropertyLists.TryGetValue(itm, out ret))
           {
-           // ret = Type.GetTypeFromHandle(itm).GetProperties(BindingFlags.Instance | BindingFlags.Public).Where(p => p.PropertyType.GetCustomAttributes(typeof(DoNotSerialize), true).Count() == 0 && p.GetCustomAttributes(typeof(DoNotSerialize), true).Count() == 0 && !(p.GetIndexParameters().Count() > 0) && (p.GetSetMethod() != null)).ToArray(); JSC
             ret = Type.GetTypeFromHandle(itm).GetRuntimeProperties().Where(p=> p.GetMethod != null && p.SetMethod != null && !p.SetMethod.IsStatic && !p.GetMethod.IsStatic && p.GetMethod.IsPublic && p.SetMethod.IsPublic && p.GetCustomAttribute<DoNotSerialize>(true) == null && !p.GetIndexParameters().Any()).ToArray();
             PropertyLists[itm] = ret;
           }
@@ -300,7 +271,7 @@ namespace WpWinNl.Utilities
           }
         }
         return IgnoreIds && ret != null
-                   ? ret.Where(p => p.GetCustomAttributes(typeof(SerializerId), true).Count() == 0)
+                   ? ret.Where(p => !p.GetCustomAttributes(typeof(SerializerId), true).Any())
                    : ret;
       }
     }
@@ -1801,10 +1772,7 @@ namespace WpWinNl.Utilities
       var ti = tp.GetTypeInfo();
       return ti.IsPrimitive || tp == typeof(DateTime) || tp == typeof(DateTimeOffset) || 
         tp == typeof(TimeSpan) || tp == typeof(string) || ti.IsEnum || tp == typeof(Guid) || tp == typeof(decimal)
-#if !SILVERLIGHT
-        || tp == typeof(BasicGeoposition)
-#endif
-        ;
+        || tp == typeof(BasicGeoposition);
     }
 
     private static void SerializeObjectAndProperties(object item, Type itemType, IStorage storage)
@@ -1917,13 +1885,13 @@ namespace WpWinNl.Utilities
       Readers[typeof(sbyte)] = SByteReader;
 
 
-#if !SILVERLIGHT
       Readers[typeof(BasicGeoposition)] = BasicGeopositionReader;
       Writers[typeof(BasicGeoposition)] = BasicGeopositionWriter;
-#endif
+
+      Readers[typeof(Geopoint)] = GeopointReader;
+      Writers[typeof(Geopoint)] = GeopointWriter;
     }
 
-#if !SILVERLIGHT
     private static object BasicGeopositionReader(BinaryReader reader)
     {
       var d = new BasicGeoposition
@@ -1935,14 +1903,37 @@ namespace WpWinNl.Utilities
       return d;
     }
 
+    private static void GeopointWriter(BinaryWriter writer, object value)
+    {
+      var d = (Geopoint) value;
+      writer.Write(d.Position.Altitude);
+      writer.Write(d.Position.Latitude);
+      writer.Write(d.Position.Longitude);
+      writer.Write((int)d.AltitudeReferenceSystem);
+      writer.Write(d.SpatialReferenceId);
+    }
+
+    private static object GeopointReader(BinaryReader reader)
+    {
+      var b = new BasicGeoposition
+      {
+        Altitude = reader.ReadDouble(),
+        Latitude = reader.ReadDouble(),
+        Longitude = reader.ReadDouble()
+      };
+      var d = new Geopoint(b, (AltitudeReferenceSystem)reader.ReadInt32(), reader.ReadUInt32());
+      return d;
+    }
+
     private static void BasicGeopositionWriter(BinaryWriter writer, object value)
     {
-      var d = (BasicGeoposition) value;
+      var d = (BasicGeoposition)value;
       writer.Write(d.Altitude);
       writer.Write(d.Latitude);
       writer.Write(d.Longitude);
     }
-#endif
+
+
 
     private static object ShortReader(BinaryReader reader)
     {
