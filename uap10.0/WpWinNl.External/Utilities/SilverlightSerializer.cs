@@ -1405,7 +1405,6 @@ namespace WpWinNl.Utilities
         _soStack.Push(_seenObjects);
         _seenObjects = new Dictionary<object, int>();
 
-        //var serializer = Activator.CreateInstance(SerializerType) as IStorage;
         BinarySerializer serializer = new BinarySerializer();
         serializer.StartSerializing();
         SerializeObject(new Entry()
@@ -1772,7 +1771,7 @@ namespace WpWinNl.Utilities
       var ti = tp.GetTypeInfo();
       return ti.IsPrimitive || tp == typeof(DateTime) || tp == typeof(DateTimeOffset) || 
         tp == typeof(TimeSpan) || tp == typeof(string) || ti.IsEnum || tp == typeof(Guid) || tp == typeof(decimal)
-        || tp == typeof(BasicGeoposition);
+        || tp == typeof(BasicGeoposition) || tp == typeof(Geopoint);
     }
 
     private static void SerializeObjectAndProperties(object item, Type itemType, IStorage storage)
