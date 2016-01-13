@@ -127,7 +127,6 @@
     <Compile Include="Behaviors\SizeVisualStateMapping.cs" />
     <Compile Include="Behaviors\TextBoxChangeModelUpdateBehavior.cs" />
     <Compile Include="Behaviors\UnfoldBehavior.cs" />
-    <Compile Include="Behaviors\WidthPercentageBehavior.cs" />
     <Compile Include="Converters\BaseValueConverter.cs" />
     <Compile Include="Converters\BasicGeopointConverter.cs" />
     <Compile Include="Converters\BoolInvertConverter.cs" />
