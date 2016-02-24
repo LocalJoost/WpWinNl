@@ -18,7 +18,7 @@ namespace WpWinNl.Behaviors
     private async void ProcessMessage(MessageDialogMessage m)
     {
       bool result = false;
-      var dialog = new MessageDialog(m.Message, m.Title);
+      var dialog = new MessageDialog(m.Title, m.Message);
 
       if (!string.IsNullOrWhiteSpace(m.OkText))
       {
@@ -43,7 +43,7 @@ namespace WpWinNl.Behaviors
           await m.CancelCallback();
         }
       }
-      catch (Exception )
+      catch (Exception)
       {
         Debug.WriteLine("double call - ain't going to work");
       }

@@ -118,13 +118,17 @@
     <Compile Include="Behaviors\DynamicBackgroundBehavior.cs" />
     <Compile Include="Behaviors\FlipViewPanoramaBehavior.cs" />
     <Compile Include="Behaviors\HideWhenCollectionEmptyBehavior.cs" />
+    <Compile Include="Behaviors\KeepFromBottomBehavior.cs" />
+    <Compile Include="Behaviors\KeepFromTopBehavior.cs" />
     <Compile Include="Behaviors\LimitTextboxBehavior.cs" />
     <Compile Include="Behaviors\MirrorBehavior.cs" />
     <Compile Include="Behaviors\MoveObjectBehavior.cs" />
+    <Compile Include="Behaviors\ObservedStyle.cs" />
     <Compile Include="Behaviors\SetInitialOpacityBehavior.cs" />
     <Compile Include="Behaviors\SizeListenerBehavior.cs" />
     <Compile Include="Behaviors\SizeVisualStateChangeBehavior.cs" />
     <Compile Include="Behaviors\SizeVisualStateMapping.cs" />
+    <Compile Include="Behaviors\StyleReplaceBehavior.cs" />
     <Compile Include="Behaviors\TextBoxChangeModelUpdateBehavior.cs" />
     <Compile Include="Behaviors\UnfoldBehavior.cs" />
     <Compile Include="Converters\BaseValueConverter.cs" />
