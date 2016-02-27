@@ -1,7 +1,10 @@
 ﻿using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
+using Windows.System.Profile;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -31,7 +34,14 @@ namespace WpWinNl.Behaviors
         AppBar.Opened += AppBarManipulated;
         AppBar.Closed += AppBarManipulated;
         UpdateMargin();
+        ApplicationView.GetForCurrentView().VisibleBoundsChanged += VisibleBoundsChanged;
+
       }
+    }
+
+    private void VisibleBoundsChanged(ApplicationView sender, object args)
+    {
+      UpdateMargin();
     }
 
     void AppBarManipulated(object sender, object e)
@@ -61,10 +71,23 @@ namespace WpWinNl.Behaviors
 
     protected virtual Thickness GetNewMargin()
     {
+
       var currentMargin = AssociatedObject.Margin;
+      var baseHeight = 0.0;
+      if (ApplicationView.GetForCurrentView().DesiredBoundsMode == ApplicationViewBoundsMode.UseCoreWindow)
+      {
+        var visibleBounds = ApplicationView.GetForCurrentView().VisibleBounds;
+        baseHeight = CoreApplication.GetCurrentView().CoreWindow.Bounds.Height - visibleBounds.Height +
+                     AppBar.ActualHeight;
+
+        if(AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Mobile")
+        {
+          baseHeight -= visibleBounds.Top;
+        }
+      }
 
       return new Thickness(currentMargin.Left, currentMargin.Top, currentMargin.Right,
-                           OriginalMargin + (AppBar.IsOpen ? GetDeltaHeight() : 0));
+                           OriginalMargin + (AppBar.IsOpen ? GetDeltaHeight() + baseHeight : baseHeight));
     }
 
     protected virtual AppBar SetAppBar(Page page)

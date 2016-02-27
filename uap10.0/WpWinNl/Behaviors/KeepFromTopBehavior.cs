@@ -1,4 +1,6 @@
-﻿using Windows.UI.Xaml;
+﻿using Windows.ApplicationModel.Core;
+using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace WpWinNl.Behaviors
@@ -8,9 +10,14 @@ namespace WpWinNl.Behaviors
     protected override Thickness GetNewMargin()
     {
       var currentMargin = AssociatedObject.Margin;
-
+      var baseHeight = 0.0;
+      if (ApplicationView.GetForCurrentView().DesiredBoundsMode == ApplicationViewBoundsMode.UseCoreWindow)
+      {
+        var visibleBounds = ApplicationView.GetForCurrentView().VisibleBounds;
+        baseHeight = visibleBounds.Top - CoreApplication.GetCurrentView().CoreWindow.Bounds.Top + AppBar.ActualHeight;
+      }
       return new Thickness(currentMargin.Left,
-                           OriginalMargin + (AppBar.IsOpen ? GetDeltaHeight() : 0) , 
+                           OriginalMargin + (AppBar.IsOpen ? GetDeltaHeight() + baseHeight : baseHeight) , 
                            currentMargin.Right, currentMargin.Bottom);
     }
 
