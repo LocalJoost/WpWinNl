@@ -53,6 +53,7 @@ namespace WpWinNl.Behaviors
     {
       AppBar.Opened -= AppBarManipulated;
       AppBar.Closed -= AppBarManipulated;
+      ApplicationView.GetForCurrentView().VisibleBoundsChanged -= VisibleBoundsChanged;
       base.OnDetaching();
     }
 
