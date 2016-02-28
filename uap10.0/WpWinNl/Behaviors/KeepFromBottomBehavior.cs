@@ -1,8 +1,6 @@
-﻿using System.Diagnostics;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
-using Windows.Foundation;
 using Windows.System.Profile;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -35,7 +33,6 @@ namespace WpWinNl.Behaviors
         AppBar.Closed += AppBarManipulated;
         UpdateMargin();
         ApplicationView.GetForCurrentView().VisibleBoundsChanged += VisibleBoundsChanged;
-
       }
     }
 
@@ -57,10 +54,8 @@ namespace WpWinNl.Behaviors
       base.OnDetaching();
     }
 
-    private async void UpdateMargin()
+    private void UpdateMargin()
     {
-      await Task.Delay(1);
-
       AssociatedObject.Margin = GetNewMargin();
     }
 
