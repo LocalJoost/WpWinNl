@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.System.Profile;
 using Windows.UI.ViewManagement;
@@ -12,9 +11,6 @@ namespace WpWinNl.Behaviors
 {
   public class KeepFromBottomBehavior : Behavior<FrameworkElement>
   {
-    protected AppBar AppBar { get; private set; }
-
-    protected double OriginalMargin { get; private set; }
 
     protected override void OnAttached()
     {
@@ -24,9 +20,9 @@ namespace WpWinNl.Behaviors
 
     private void AssociatedObjectLoaded(object sender, RoutedEventArgs e)
     {
-      OriginalMargin = GetOriginalMargin();
       AssociatedObject.Loaded -= AssociatedObjectLoaded;
-      AppBar = SetAppBar(AssociatedObject.GetVisualAncestors().OfType<Page>().First());
+      OriginalMargin = GetOriginalMargin();
+      AppBar = GetAppBar(AssociatedObject.GetVisualAncestors().OfType<Page>().First());
       if (AppBar != null)
       {
         AppBar.Opened += AppBarManipulated;
@@ -34,6 +30,14 @@ namespace WpWinNl.Behaviors
         UpdateMargin();
         ApplicationView.GetForCurrentView().VisibleBoundsChanged += VisibleBoundsChanged;
       }
+    }
+
+    protected override void OnDetaching()
+    {
+      AppBar.Opened -= AppBarManipulated;
+      AppBar.Closed -= AppBarManipulated;
+      ApplicationView.GetForCurrentView().VisibleBoundsChanged -= VisibleBoundsChanged;
+      base.OnDetaching();
     }
 
     private void VisibleBoundsChanged(ApplicationView sender, object args)
@@ -46,20 +50,12 @@ namespace WpWinNl.Behaviors
       UpdateMargin();
     }
 
-    protected override void OnDetaching()
-    {
-      AppBar.Opened -= AppBarManipulated;
-      AppBar.Closed -= AppBarManipulated;
-      ApplicationView.GetForCurrentView().VisibleBoundsChanged -= VisibleBoundsChanged;
-      base.OnDetaching();
-    }
-
     private void UpdateMargin()
     {
       AssociatedObject.Margin = GetNewMargin();
     }
 
-    protected double GetDeltaHeight()
+    protected double GetDeltaMargin()
     {
       var popup = AppBar.GetVisualDescendents().OfType<Popup>().First();
       return popup.ActualHeight - AppBar.ActualHeight;
@@ -67,26 +63,29 @@ namespace WpWinNl.Behaviors
 
     protected virtual Thickness GetNewMargin()
     {
-
       var currentMargin = AssociatedObject.Margin;
-      var baseHeight = 0.0;
+      var baseMargin = 0.0;
       if (ApplicationView.GetForCurrentView().DesiredBoundsMode == ApplicationViewBoundsMode.UseCoreWindow)
       {
         var visibleBounds = ApplicationView.GetForCurrentView().VisibleBounds;
-        baseHeight = CoreApplication.GetCurrentView().CoreWindow.Bounds.Height - visibleBounds.Height +
+        baseMargin = CoreApplication.GetCurrentView().CoreWindow.Bounds.Height - visibleBounds.Height +
                      AppBar.ActualHeight;
 
         if(AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Mobile")
         {
-          baseHeight -= visibleBounds.Top;
+          baseMargin -= visibleBounds.Top;
         }
       }
 
       return new Thickness(currentMargin.Left, currentMargin.Top, currentMargin.Right,
-                           OriginalMargin + (AppBar.IsOpen ? GetDeltaHeight() + baseHeight : baseHeight));
+                           OriginalMargin + (AppBar.IsOpen ? GetDeltaMargin() + baseMargin : baseMargin));
     }
 
-    protected virtual AppBar SetAppBar(Page page)
+    protected AppBar AppBar { get; private set; }
+
+    protected double OriginalMargin { get; private set; }
+
+    protected virtual AppBar GetAppBar(Page page)
     {
       return page.BottomAppBar;
     }
