@@ -17,7 +17,7 @@ namespace WpWinNl.Behaviors
         baseMargin = visibleBounds.Top - CoreApplication.GetCurrentView().CoreWindow.Bounds.Top + AppBar.ActualHeight;
       }
       return new Thickness(currentMargin.Left,
-                           OriginalMargin + (AppBar.IsOpen ? GetDeltaMargin() + baseMargin : baseMargin) , 
+        OriginalMargin.Top + (AppBar.IsOpen ? GetDeltaMargin() + baseMargin : baseMargin) , 
                            currentMargin.Right, currentMargin.Bottom);
     }
 
@@ -26,10 +26,6 @@ namespace WpWinNl.Behaviors
       return page.TopAppBar;
     }
 
-    protected override double GetOriginalMargin()
-    {
-      return AssociatedObject.Margin.Top;
-    }
   }
 }
 

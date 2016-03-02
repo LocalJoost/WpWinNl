@@ -11,33 +11,54 @@ namespace WpWinNl.Behaviors
 {
   public class KeepFromBottomBehavior : Behavior<FrameworkElement>
   {
-
     protected override void OnAttached()
     {
-      AssociatedObject.Loaded += AssociatedObjectLoaded;
+      if(!Initialize())
+      { 
+        AssociatedObject.Loaded += AssociatedObjectLoaded;
+      }
       base.OnAttached();
     }
 
     private void AssociatedObjectLoaded(object sender, RoutedEventArgs e)
     {
       AssociatedObject.Loaded -= AssociatedObjectLoaded;
-      OriginalMargin = GetOriginalMargin();
-      AppBar = GetAppBar(AssociatedObject.GetVisualAncestors().OfType<Page>().First());
-      if (AppBar != null)
+      Initialize();
+    }
+
+    private bool Initialize()
+    {
+      var page = AssociatedObject.GetVisualAncestors().OfType<Page>().FirstOrDefault();
+      if (page != null)
       {
-        AppBar.Opened += AppBarManipulated;
-        AppBar.Closed += AppBarManipulated;
-        UpdateMargin();
-        ApplicationView.GetForCurrentView().VisibleBoundsChanged += VisibleBoundsChanged;
+        AppBar = GetAppBar(page);
+        if (AppBar != null)
+        {
+          OriginalMargin = AssociatedObject.Margin;
+
+          AppBar.Opened += AppBarManipulated;
+          AppBar.Closed += AppBarManipulated;
+          AppBar.SizeChanged += AppBarSizeChanged;
+          UpdateMargin();
+          ApplicationView.GetForCurrentView().VisibleBoundsChanged += VisibleBoundsChanged;
+          return true;
+        }
       }
+      return false;
     }
 
     protected override void OnDetaching()
     {
       AppBar.Opened -= AppBarManipulated;
       AppBar.Closed -= AppBarManipulated;
+      AppBar.SizeChanged -= AppBarSizeChanged;
       ApplicationView.GetForCurrentView().VisibleBoundsChanged -= VisibleBoundsChanged;
+      ResetMargin();
       base.OnDetaching();
+    }
+    private void AppBarSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+      UpdateMargin();
     }
 
     private void VisibleBoundsChanged(ApplicationView sender, object args)
@@ -45,7 +66,7 @@ namespace WpWinNl.Behaviors
       UpdateMargin();
     }
 
-    void AppBarManipulated(object sender, object e)
+    private void AppBarManipulated(object sender, object e)
     {
       UpdateMargin();
     }
@@ -78,21 +99,22 @@ namespace WpWinNl.Behaviors
       }
 
       return new Thickness(currentMargin.Left, currentMargin.Top, currentMargin.Right,
-                           OriginalMargin + (AppBar.IsOpen ? GetDeltaMargin() + baseMargin : baseMargin));
+                           OriginalMargin.Bottom + (AppBar.IsOpen ? GetDeltaMargin() + baseMargin : baseMargin));
     }
 
     protected AppBar AppBar { get; private set; }
 
-    protected double OriginalMargin { get; private set; }
+    protected Thickness OriginalMargin { get; private set; }
+
+
+    private void ResetMargin()
+    {
+      AssociatedObject.Margin = OriginalMargin;
+    }
 
     protected virtual AppBar GetAppBar(Page page)
     {
       return page.BottomAppBar;
-    }
-
-    protected virtual double GetOriginalMargin()
-    {
-      return AssociatedObject.Margin.Bottom;
     }
   }
 }
