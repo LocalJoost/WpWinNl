@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using Windows.Devices.Geolocation;
 using GalaSoft.MvvmLight;
 using WpWinNl.MapBindingDemo.Models;
@@ -11,6 +12,7 @@ namespace WpWinNl.MapBindingDemo.ViewModels
     public MapBindingViewModel()
     {
       Icons = new ObservableCollection<PointList>();
+      LabeledIcons = new ObservableCollection<PointList>();
       Lines = new ObservableCollection<LinearList>();
       Polygons = new ObservableCollection<LinearList>();
       MultiPolygons = new ObservableCollection<MultiPathList>();
@@ -29,6 +31,7 @@ namespace WpWinNl.MapBindingDemo.ViewModels
     }
 
     public ObservableCollection<PointList> Icons { get; set; }
+    public ObservableCollection<PointList> LabeledIcons { get; set; }
     public ObservableCollection<LinearList> Lines { get; set; }
     public ObservableCollection<LinearList> Polygons { get; set; }
     public ObservableCollection<MultiPathList> MultiPolygons { get; set; }
@@ -36,6 +39,7 @@ namespace WpWinNl.MapBindingDemo.ViewModels
     public void DeleteAll()
     {
       Icons.Clear();
+      LabeledIcons.Clear();
       Lines.Clear();
       Polygons.Clear();
       MultiPolygons.Clear();
@@ -67,6 +71,18 @@ namespace WpWinNl.MapBindingDemo.ViewModels
 
       Icons.AddRange(PointList.GetRandomPoints(new Geopoint(_area.NorthwestCorner),
         new Geopoint(_area.SoutheastCorner), 50));
+    }
+
+    public void LoadLabeledIcons()
+    {
+      string[] cheeses = {"Gorgonozla", "Cacio magno", "Taleggio", "Tosèla del Primiero", "Ubriaco", "Toma lucana", "Spalèm", "Salignon", "Morello", "Falagnone" };
+      var icons = PointList.GetRandomPoints(new Geopoint(_area.NorthwestCorner),
+        new Geopoint(_area.SoutheastCorner), 50).ToList();
+      for (var i = 0; i < icons.Count(); i++)
+      {
+        icons[i].Name = cheeses[i%10];
+      }
+      LabeledIcons.AddRange(icons);
     }
 
     public void LoadLines()

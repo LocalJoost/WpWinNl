@@ -7,6 +7,7 @@
     xmlns:mapbinding="using:WpWinNl.Maps"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:behaviors="using:WpWinNl.Behaviors"
+    xmlns:mapBindingDemo="using:WpWinNl.MapBindingDemo"
     x:Class="WpWinNl.MapBindingDemo.MainPage"
     mc:Ignorable="d">
 
@@ -20,6 +21,7 @@
             <AppBarButton Label="Polygons" Icon="Pictures"  Click="{x:Bind ViewModel.LoadMultiPolygons}" />
 
             <AppBarButton Label="Points" Icon="MapPin" Click="{x:Bind ViewModel.LoadIcons}" />
+            <AppBarButton Label="Italian cheeses" Icon="Emoji2" Click="{x:Bind ViewModel.LoadLabeledIcons}" />
             <AppBarButton Label="Delete all" Icon="Delete" Click="{x:Bind ViewModel.DeleteAll}"  />
         </CommandBar>
     </Page.BottomAppBar>
@@ -37,6 +39,15 @@
                     <mapbinding:MapShapeDrawBehavior.ShapeDrawer>
                         <mapbinding:MapIconDrawer ImageUri="ms-appx:///Assets/winlogo.png" CollisionBehaviorDesired="RemainVisible"/>
                     </mapbinding:MapShapeDrawBehavior.ShapeDrawer>
+                </mapbinding:MapShapeDrawBehavior>
+
+                <mapbinding:MapShapeDrawBehavior LayerName="Cheeses" ItemsSource="{x:Bind ViewModel.LabeledIcons, Converter={StaticResource MapObjectsListConverter}}" PathPropertyName="Point">
+                  <mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
+                    <mapbinding:EventToHandlerMapper EventName="MapElementClick" CommandName="SelectCommand" />
+                  </mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
+                  <mapbinding:MapShapeDrawBehavior.ShapeDrawer>
+                     <mapBindingDemo:CheeseDrawer ImageUri="ms-appx:///Assets/ItalianButton.png" CollisionBehaviorDesired="RemainVisible"/>
+                  </mapbinding:MapShapeDrawBehavior.ShapeDrawer>
                 </mapbinding:MapShapeDrawBehavior>
 
                 <mapbinding:MapShapeDrawBehavior LayerName="Lines" ItemsSource="{x:Bind ViewModel.Lines, Converter={StaticResource MapObjectsListConverter}}" PathPropertyName="Points">
