@@ -26,8 +26,9 @@
 -->
 <Directives xmlns="http://schemas.microsoft.com/netfx/2013/01/metadata">
   <Library Name="WpWinNl.External">
+    <Namespace Name="WpWinNl.Utilities" Serialize="Required All" Activate="Required All" Dynamic="Required All"/>
 
-  	<!-- add directives for your library here -->
+    <!-- add directives for your library here -->
 
   </Library>
 </Directives>

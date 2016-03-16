@@ -11,6 +11,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -53,6 +54,35 @@ namespace WpWinNl.Utilities
     private static bool _isChecksum;
     [ThreadStatic]
     public static bool IgnoreIds;
+
+    /// <summary>
+    /// Use this method to generate rd.xml entries that you will need for your app
+    /// </summary>
+    public static List<string> RdXmlEntries
+    {
+      get
+      {
+        var l = new List<string>();
+        foreach (var k in PropertyLists.Keys)
+        {
+          var objName = Type.GetTypeFromHandle(k).ToString();
+          foreach (var p in PropertyLists[k])
+          {
+            var entry = $"<Type Name=\"WpWinNl.Utilities.GetSetGeneric{{{RdXmlIfy(objName)},{RdXmlIfy (p.PropertyType.ToString())}}}\" Dynamic=\"Required All\" /> ";
+            if (!l.Contains(entry))
+            {
+              l.Add(entry);
+            }
+          }
+        }
+        return l;
+      }
+    }
+
+    private static  string RdXmlIfy(string typeName)
+    {
+      return typeName.Replace('[', '{').Replace(']', '}').Replace("`1", "").Replace("`2", "").Replace("`3", "");
+    }
 
     [ThreadStatic]
     public static bool IsReference;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace WpWinNl.Utilities
@@ -85,6 +86,7 @@ namespace WpWinNl.Utilities
                         var gs = typeof (GetSetGeneric<,>);
                         var tp = gs.MakeGenericType(new Type[] { Type.GetTypeFromHandle(type), p.PropertyType });
                         var getSet = (GetSet) Activator.CreateInstance(tp, new object[] {p});
+                      Debug.WriteLine(getSet);
                         getSet.Vanilla = getSet.Get(vanilla);
                         acs.Add(getSet);
                     }
