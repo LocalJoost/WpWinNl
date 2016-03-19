@@ -15,6 +15,12 @@ namespace WpWinNl.Behaviors
       base.OnAttached();
     }
 
+    protected override void OnDetaching()
+    {
+      Messenger.Default.Unregister<MessageDialogMessage>(this);
+      base.OnAttached();
+    }
+
     private async void ProcessMessage(MessageDialogMessage m)
     {
       bool result = false;
