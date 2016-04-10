@@ -112,6 +112,7 @@
     </Compile>
     <Compile Include="EventAsync.cs" />
     <Compile Include="EventToHandlerMapper.cs" />
+    <Compile Include="GenericMapIconDrawer.cs" />
     <Compile Include="MapViewAreaBindingBehavior.cs" />
     <Compile Include="MapBindingHelpers.cs" />
     <Compile Include="MapElementProperties.cs" />
