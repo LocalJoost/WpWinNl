@@ -118,6 +118,7 @@
     <Compile Include="Behaviors\DynamicBackgroundBehavior.cs" />
     <Compile Include="Behaviors\FlipViewPanoramaBehavior.cs" />
     <Compile Include="Behaviors\HideWhenCollectionEmptyBehavior.cs" />
+    <Compile Include="Behaviors\KeepAboveInputPaneBehavior.cs" />
     <Compile Include="Behaviors\KeepFromBottomBehavior.cs" />
     <Compile Include="Behaviors\KeepFromTopBehavior.cs" />
     <Compile Include="Behaviors\LimitTextboxBehavior.cs" />
