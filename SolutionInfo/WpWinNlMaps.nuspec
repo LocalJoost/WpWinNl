@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>WpWinNlMaps</id>
-    <version>3.0.5-alpha</version>
+    <version>3.0.6-alpha</version>
     <authors>Joost van Schaik</authors>
     <description>This is a map binding suite for Windows Phone 8.1 and UWP based on WinWinNl</description>
     <summary>
