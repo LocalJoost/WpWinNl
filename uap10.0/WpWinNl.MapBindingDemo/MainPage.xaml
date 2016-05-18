@@ -23,7 +23,11 @@
       <AppBarButton Label="Points" Icon="MapPin" Click="{x:Bind ViewModel.LoadIcons}" />
       <AppBarButton Label="Italian cheeses" Icon="Emoji2" Click="{x:Bind ViewModel.LoadLabeledIcons}" />
       <AppBarButton Label="Flags" Icon="Flag" Click="{x:Bind ViewModel.LoadFlags}" />
-      <AppBarButton Label="Pirate!" Icon="Forward" Click="{x:Bind ViewModel.ChangeToPirate}" />
+      <AppBarButton Label="Pirate!" Click="{x:Bind ViewModel.ChangeToPirate}" >
+        <AppBarButton.Icon>
+          <FontIcon FontFamily="/Assets/Fonts/WINGDING.TTF#Wingdings" Glyph="&#x2620;" FontSize="24" FontWeight="Bold"/>
+        </AppBarButton.Icon>
+      </AppBarButton>
       <AppBarButton Label="Delete all" Icon="Delete" Click="{x:Bind ViewModel.DeleteAll}"  />
     </CommandBar>
   </Page.BottomAppBar>
