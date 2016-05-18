@@ -10,7 +10,12 @@ namespace WpWinNl.MapBindingDemo.Models
 {
   public class GeometryProvider : ViewModelBase
   {
-    public string Name { get; set; }
+    private string _name;
+    public string Name
+    {
+      get { return _name; }
+      set { Set(() => Name, ref _name, value); }
+    }
 
     public ICommand SelectCommand => new RelayCommand<MapSelectionParameters>(Select);
 

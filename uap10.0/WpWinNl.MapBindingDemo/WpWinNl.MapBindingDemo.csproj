@@ -100,6 +100,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\FlagList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\GeometryProvider.cs" />
     <Compile Include="Models\MultiPathList.cs" />
@@ -114,7 +115,13 @@
     <None Include="WpWinNl.MapBindingDemo_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\ItalianButton.png" />
+    <Content Include="Assets\Belgium.png" />
+    <Content Include="Assets\Germany.png" />
+    <Content Include="Assets\Italy.png" />
+    <Content Include="Assets\JollyRoger.png" />
+    <Content Include="Assets\Netherlands.png" />
+    <Content Include="Assets\Sweden.png" />
+    <Content Include="Assets\UK.png" />
     <Content Include="Assets\winlogo.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />

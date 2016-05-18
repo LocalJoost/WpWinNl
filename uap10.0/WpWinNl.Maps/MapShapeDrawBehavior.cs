@@ -55,14 +55,14 @@ namespace WpWinNl.Maps
           newShape.SetLayer(LayerName);
 
           // Listen to property changed event of geometry property to check if the shape needs to
-          // be redrawed
+          // be redrawed.
           var evt = viewModel.GetType().GetRuntimeEvent("PropertyChanged");
           if (evt != null)
           {
             var observable = Observable.FromEventPattern<PropertyChangedEventArgs>(viewModel, "PropertyChanged")
               .Subscribe(se =>
               {
-                if (se.EventArgs.PropertyName == PathPropertyName)
+                if (!LegacyMode || se.EventArgs.PropertyName == PathPropertyName)
                 {
                   ReplaceShape(se.Sender);
                 }
@@ -249,7 +249,8 @@ namespace WpWinNl.Maps
           var newShape = CreateShape(viewModel);
           if (newShape != null)
           {
-            AssociatedObject.MapElements[shapeLocation] = CreateShape(viewModel);
+            AssociatedObject.MapElements.RemoveAt(shapeLocation);
+            AssociatedObject.MapElements.Insert(shapeLocation, newShape);
           }
         }
       }
@@ -461,6 +462,32 @@ namespace WpWinNl.Maps
         typeof(MapShapeDrawer),
         typeof(MapShapeDrawBehavior),
         new PropertyMetadata(new MapPolylineDrawer()));
+
+    #endregion
+
+
+      
+    #region LegacyMode
+
+    /// <summary>
+    /// LegacyMode Property name
+    /// </summary>
+    public const string LegacyModePropertyName = "LegacyMode";
+
+    public bool LegacyMode
+    {
+      get { return (bool)GetValue(LegacyModeProperty); }
+      set { SetValue(LegacyModeProperty, value); }
+    }
+
+    /// <summary>
+    /// LegacyMode Property definition
+    /// </summary>
+    public static readonly DependencyProperty LegacyModeProperty = DependencyProperty.Register(
+        LegacyModePropertyName,
+        typeof(bool),
+        typeof(MapShapeDrawBehavior),
+        new PropertyMetadata(default(bool)));
 
     #endregion
   }
