@@ -1,0 +1,99 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
+    xmlns:mapbinding="using:WpWinNl.Maps"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:behaviors="using:WpWinNl.Behaviors"
+    xmlns:mapBindingDemo="using:WpWinNl.MapBindingDemo"
+    x:Class="WpWinNl.MapBindingDemo.MainPage"
+    mc:Ignorable="d">
+
+  <Page.BottomAppBar>
+    <CommandBar>
+      <CommandBar.SecondaryCommands>
+        <AppBarButton Label="show area"  Click="{x:Bind ViewModel.ShowArea}" />
+      </CommandBar.SecondaryCommands>
+      <AppBarButton Label="Lines" Icon="Italic" Click="{x:Bind ViewModel.LoadLines}" />
+      <AppBarButton Label="Polygons" Icon="Placeholder"  Click="{x:Bind ViewModel.LoadPolygons}" />
+      <AppBarButton Label="Polygons" Icon="Pictures"  Click="{x:Bind ViewModel.LoadMultiPolygons}" />
+
+      <AppBarButton Label="Points" Icon="MapPin" Click="{x:Bind ViewModel.LoadIcons}" />
+      <AppBarButton Label="Italian cheeses" Icon="Emoji2" Click="{x:Bind ViewModel.LoadLabeledIcons}" />
+      <AppBarButton Label="Flags" Icon="Flag" Click="{x:Bind ViewModel.LoadFlags}" />
+      <AppBarButton Label="Pirate!" Click="{x:Bind ViewModel.ChangeToPirate}" >
+        <AppBarButton.Icon>
+          <FontIcon FontFamily="/Assets/Fonts/WINGDING.TTF#Wingdings" Glyph="&#x2620;" FontSize="24" FontWeight="Bold"/>
+        </AppBarButton.Icon>
+      </AppBarButton>
+      <AppBarButton Label="Delete all" Icon="Delete" Click="{x:Bind ViewModel.DeleteAll}"  />
+    </CommandBar>
+  </Page.BottomAppBar>
+  <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <interactivity:Interaction.Behaviors>
+      <behaviors:MessageDialogBehavior/>
+    </interactivity:Interaction.Behaviors>
+    <maps:MapControl x:Name="MyMap" Grid.Row="0" ZoomLevel="{x:Bind ViewModel.ZoomLevel, Mode=OneWay}" Center="{x:Bind ViewModel.Center, Mode=OneWay}">
+      <interactivity:Interaction.Behaviors>
+        <mapbinding:MapViewAreaBindingBehavior MapViewArea="{x:Bind ViewModel.Area, Mode=TwoWay}"></mapbinding:MapViewAreaBindingBehavior>
+        <mapbinding:MapShapeDrawBehavior LayerName="Points" ItemsSource="{x:Bind ViewModel.Icons, Converter={StaticResource MapObjectsListConverter}}" PathPropertyName="Point">
+          <mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
+            <mapbinding:EventToHandlerMapper EventName="MapElementClick" CommandName="SelectCommand" />
+          </mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
+          <mapbinding:MapShapeDrawBehavior.ShapeDrawer>
+            <mapbinding:MapIconDrawer ImageUri="ms-appx:///Assets/winlogo.png" CollisionBehaviorDesired="RemainVisible"/>
+          </mapbinding:MapShapeDrawBehavior.ShapeDrawer>
+        </mapbinding:MapShapeDrawBehavior>
+
+        <mapbinding:MapShapeDrawBehavior LayerName="Cheeses" ItemsSource="{x:Bind ViewModel.LabeledIcons, Converter={StaticResource MapObjectsListConverter}}" PathPropertyName="Point">
+          <mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
+            <mapbinding:EventToHandlerMapper EventName="MapElementClick" CommandName="SelectCommand" />
+          </mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
+          <mapbinding:MapShapeDrawBehavior.ShapeDrawer>
+            <mapBindingDemo:CheeseDrawer ImageUri="ms-appx:///Assets/Italy.png" CollisionBehaviorDesired="RemainVisible"/>
+          </mapbinding:MapShapeDrawBehavior.ShapeDrawer>
+        </mapbinding:MapShapeDrawBehavior>
+
+        <mapbinding:MapShapeDrawBehavior LayerName="Flags" ItemsSource="{x:Bind ViewModel.Flags, Converter={StaticResource MapObjectsListConverter}}" PathPropertyName="Point">
+          <mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
+            <mapbinding:EventToHandlerMapper EventName="MapElementClick" CommandName="SelectCommand" />
+          </mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
+          <mapbinding:MapShapeDrawBehavior.ShapeDrawer>
+            <mapbinding:GenericMapIconDrawer ImageUriPropertyName="Icon" AnchorPropertyName="AnchorPoint" TitlePropertyName="Name" IsVisiblePropertyName="IsVisible" CollisionBehaviorDesired="RemainVisible"/>
+          </mapbinding:MapShapeDrawBehavior.ShapeDrawer>
+        </mapbinding:MapShapeDrawBehavior>
+
+        <mapbinding:MapShapeDrawBehavior LayerName="Lines" ItemsSource="{x:Bind ViewModel.Lines, Converter={StaticResource MapObjectsListConverter}}" PathPropertyName="Points">
+          <mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
+            <mapbinding:EventToHandlerMapper EventName="MapElementClick" CommandName="SelectCommand"/>
+          </mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
+          <mapbinding:MapShapeDrawBehavior.ShapeDrawer>
+            <mapbinding:MapPolylineDrawer Color="BlueViolet"/>
+          </mapbinding:MapShapeDrawBehavior.ShapeDrawer>
+        </mapbinding:MapShapeDrawBehavior>
+
+        <mapbinding:MapShapeDrawBehavior LayerName="Shapes" ItemsSource="{x:Bind ViewModel.Polygons, Converter={StaticResource MapObjectsListConverter}}" PathPropertyName="Points">
+          <mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
+            <mapbinding:EventToHandlerMapper EventName="MapTapped" CommandName="SelectCommand"/>
+          </mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
+          <mapbinding:MapShapeDrawBehavior.ShapeDrawer>
+            <mapbinding:MapPolygonDrawer Color="Green" Width="10"/>
+          </mapbinding:MapShapeDrawBehavior.ShapeDrawer>
+        </mapbinding:MapShapeDrawBehavior>
+
+        <mapbinding:MapShapeDrawBehavior LayerName="MultiShapes" ItemsSource="{x:Bind ViewModel.MultiPolygons, Converter={StaticResource MapObjectsListConverter}}" PathPropertyName="Paths">
+          <mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
+            <mapbinding:EventToHandlerMapper EventName="MapElementClick" MethodName="Select"/>
+          </mapbinding:MapShapeDrawBehavior.EventToHandlerMappers>
+          <mapbinding:MapShapeDrawBehavior.ShapeDrawer>
+            <mapbinding:MapMultiPolygonDrawer Color="OrangeRed" StrokeColor="Crimson" Width="2" StrokeDashed="True"/>
+          </mapbinding:MapShapeDrawBehavior.ShapeDrawer>
+        </mapbinding:MapShapeDrawBehavior>
+      </interactivity:Interaction.Behaviors>
+
+    </maps:MapControl>
+  </Grid>
+</Page>
+

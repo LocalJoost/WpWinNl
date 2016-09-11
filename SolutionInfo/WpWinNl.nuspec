@@ -1,30 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?> 
-<package> 
-  <metadata> 
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
     <id>WpWinNl</id>
-    <version>2.1.3-alpha</version> 
+    <version>3.0.5-alpha</version>
     <authors>Joost van Schaik, Timmy Kokke, #wp7nl</authors>
-    <description>This project is a merger of wp7nl and win8nl, a collection of Windows Phone and Windows Store apps utility classes that are created or brought together by the Dutch developer community, a loose band of enthousiasts usually referred to as "#wp7nl" or #wpnl (these days) by their twitter hashtag.</description>
-    <summary>
-</summary>
+    <description>A collection of Windows Phone and Windows Store apps utility classes that are created or brought together by the Dutch developer community. Updated for UWP</description>
+    <summary>This part is the basic part dependent on MVVMLight</summary>
+    <releaseNotes>Update to UWP SilverlightSerializer in WpWinNlBasic</releaseNotes>
     <language>en-US</language>
     <licenseUrl>http://wpwinnl.codeplex.com/license</licenseUrl>
     <projectUrl>http://wpwinnl.codeplex.com</projectUrl>
     <iconUrl>http://www.schaikweb.net/miscimages/WpWinNl.png</iconUrl>
     <dependencies>
       <group targetFramework="wpa81">
-        <dependency id="Portable.MvvmLightLibs" version="5.0.2.0" />
-        <dependency id="WpWinNlBasic" version="2.1.3-alpha" />
+        <dependency id="MvvmLightLibs" version="5.2.0" />
+        <dependency id="WpWinNlBasic" version="3.0.5-alpha" />
       </group>
       <group targetFramework="portable-win81+wpa81">
-        <dependency id="Portable.MvvmLightLibs" version="5.0.2.0" />
-        <dependency id="WpWinNlBasic" version="2.1.3-alpha" />
+        <dependency id="MvvmLightLibs" version="5.2.0" />
+        <dependency id="WpWinNlBasic" version="3.0.5-alpha" />
       </group>
       <group targetFramework="WindowsPhone8">
         <dependency id="WPtoolkit" version="4.2013.08.16" />
-        <dependency id="WpWinNlBasic" version="2.1.3-alpha" />
-        <dependency id="MvvmLightLibs" version="5.0.2.0" />
+        <dependency id="WpWinNlBasic" version="3.0.5-alpha" />
+        <dependency id="MvvmLightLibs" version="5.2.0" />
+      </group>
+      <group targetFramework="uap10.0">
+        <dependency id="Microsoft.Xaml.Behaviors.Uwp.Managed" version="1.0.3" />
+        <dependency id="MvvmLightLibs" version="5.2.0" />
+        <dependency id="WpWinNlBasic" version="3.0.5-alpha" />
       </group>
     </dependencies>
-  </metadata> 
+  </metadata>
 </package>

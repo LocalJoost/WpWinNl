@@ -44,7 +44,7 @@
 				<interactivity:Interaction.Behaviors>
 					<mapbinding:MapShapeDrawBehavior LayerName="Points" ItemsSource="{Binding Icons}" PathPropertyName="Points">
 						<mapbinding:MapShapeDrawBehavior.EventToCommandMappers>
-              <mapbinding:EventToCommandMapper EventName="MapTapped" CommandName="SelectCommand"/>
+              <mapbinding:EventToHandlerMapper EventName="MapTapped" CommandName="SelectCommand"/>
 						</mapbinding:MapShapeDrawBehavior.EventToCommandMappers>
 						<mapbinding:MapShapeDrawBehavior.ShapeDrawer>
 							<mapbinding:MapIconDrawer  ImageUri="ms-appx:///Assets/wplogo.png"/>

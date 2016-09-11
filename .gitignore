@@ -181,3 +181,9 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+/uap10.0/TestSilverlightSerializer/project.lock.json
+/uap10.0/WpWinNl/project.lock.json
+/uap10.0/WpWinNl.External/project.lock.json
+/uap10.0/WpWinNl.MapBindingDemo/project.lock.json
+/uap10.0/WpWinNl.MVVMLight/project.lock.json
+/.vs/config/applicationhost.config

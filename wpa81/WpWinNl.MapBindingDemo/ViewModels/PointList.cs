@@ -42,7 +42,7 @@ namespace WpWinNl.MapBindingDemo.ViewModels
         {
           Name = "Line2",
          Points= new Geopath(new[]{
-            new BasicGeoposition{Latitude = 52.181295119226  , Longitude = 5.39748212322593},
+            new BasicGeoposition{Latitude = 52.181295119226 , Longitude = 5.39748212322593},
             new BasicGeoposition{Latitude = 52.1793784294277, Longitude = 5.39909915998578}
           })
         }
